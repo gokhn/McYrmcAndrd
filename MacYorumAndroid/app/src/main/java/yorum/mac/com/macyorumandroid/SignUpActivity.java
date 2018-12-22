@@ -40,5 +40,12 @@ public class SignUpActivity extends Activity {
                 startActivity(it);
             }
         });
+        sup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(SignUpActivity.this,CouponListActivity.class);//yeni sayfa çağırma gitme işlemi yapar bu iki satır
+                startActivity(it);
+            }
+        });
     }
 }

@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- buraya her aktiviteyi tanımlaman gerekiyor -->
         <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".CouponListActivity"></activity>
     </application>
 
 </manifest>
