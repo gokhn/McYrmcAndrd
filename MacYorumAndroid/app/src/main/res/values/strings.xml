@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MacYorumAndroid</string>
+    <string name="refcode">Referans Kodu</string>
+    <string name="nameandsurname">Ad Soyad</string>
+    <string name="signup">Kayıt Ol</string>
+    <string name="alreadyhaveanaccount">Zaten hesabınız var mı ?</string>
+    <string name="field_required">%s alanı boş veya geçersiz</string>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="password">Parola</string>
+    <string name="login">Giriş</string>
+    <string name="error_found">Hata Oluştu.</string>
+
 </resources>

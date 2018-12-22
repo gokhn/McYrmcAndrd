@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name="mac.yorum.android.app.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,8 +17,8 @@
             </intent-filter>
         </activity>
         <!-- buraya her aktiviteyi tanımlaman gerekiyor -->
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".CouponListActivity"></activity>
+        <activity android:name="mac.yorum.android.app.activities.SignUpActivity"></activity>
+        <activity android:name="mac.yorum.android.app.activities.CouponListActivity"></activity>
     </application>
 
 </manifest>

@@ -5,125 +5,203 @@
     android:layout_height="match_parent"
     android:background="@drawable/grdnt"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentTop="true"
+        android:gravity="top"
         android:paddingLeft="60dp"
         android:paddingRight="60dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/message"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/message" />
+
                 <EditText
-                    android:id="@+id/mail"
+                    android:id="@+id/edt_refcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="#00000000"
+                    android:hint="@string/refcode"
+                    android:inputType="text"
+                    android:letterSpacing="0.1"
+                    android:textColor="#fff"
+                    android:textColorHint="#d9e5f3"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#4a5a71"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/message" />
+
+                <EditText
+                    android:id="@+id/edt_nameandsurname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="#00000000"
+                    android:hint="@string/nameandsurname"
+                    android:inputType="text"
+                    android:letterSpacing="0.1"
+                    android:textColor="#fff"
+                    android:textColorHint="#d9e5f3"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#4a5a71"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/message" />
+
+                <EditText
+                    android:id="@+id/edt_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="#00000000"
                     android:hint="Email Address"
-                    android:textColorHint="#d9e5f3"
-                    android:layout_marginLeft="15dp"
-                    android:background="#00000000"
-                    android:letterSpacing="0.1"
-                    android:textSize="16dp"
                     android:inputType="text"
+                    android:letterSpacing="0.1"
                     android:textColor="#fff"
-                    />
+                    android:textColorHint="#d9e5f3"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#4a5a71"></LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/usrusr"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/usrusr" />
+
                 <EditText
-                    android:id="@+id/usrusr"
+                    android:id="@+id/edt_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="#00000000"
                     android:hint="Username"
-                    android:textColorHint="#d9e5f3"
-                    android:layout_marginLeft="15dp"
-                    android:background="#00000000"
-                    android:letterSpacing="0.1"
-                    android:textSize="16dp"
                     android:inputType="text"
+                    android:letterSpacing="0.1"
                     android:textColor="#fff"
-                    />
+                    android:textColorHint="#d9e5f3"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#4a5a71"></LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/pswd"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/pswd" />
+
                 <EditText
-                    android:id="@+id/pswrdd"
+                    android:id="@+id/edt_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:textColorHint="#d9e5f3"
                     android:layout_marginLeft="15dp"
                     android:background="#00000000"
+                    android:hint="Password"
                     android:inputType="textPassword"
                     android:letterSpacing="0.1"
-                    android:textSize="16dp"
                     android:textColor="#fff"
-                    />
+                    android:textColorHint="#d9e5f3"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#4a5a71"></LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp">
+
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/phonemob"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:src="@drawable/phonemob" />
+
                 <EditText
-                    android:id="@+id/mobphone"
+                    android:id="@+id/edt_phonenumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mobile Number"
-                    android:textColorHint="#d9e5f3"
                     android:layout_marginLeft="15dp"
                     android:background="#00000000"
-                    android:letterSpacing="0.1"
-                    android:textSize="16dp"
+                    android:hint="Mobile Number"
                     android:inputType="number"
+                    android:letterSpacing="0.1"
                     android:textColor="#fff"
-                    />
+                    android:textColorHint="#d9e5f3"
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -143,7 +221,7 @@
         android:layout_alignParentLeft="true">
 
         <TextView
-            android:id="@+id/sup"
+            android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -152,21 +230,20 @@
             android:gravity="center"
             android:letterSpacing="0.2"
             android:padding="16dp"
-            android:text="Signup"
+            android:text="@string/signup"
             android:textColor="#d9e5f3"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/lin"
+            android:id="@+id/btn_already_have_an_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-
             android:letterSpacing="0.1"
-            android:text="Already have an Account ?"
+            android:text="@string/alreadyhaveanaccount"
             android:textColor="#d9e5f3" />
     </LinearLayout>
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -177,4 +254,5 @@
             android:src="@drawable/ibytes"
             />
     </LinearLayout>
+    -->
 </RelativeLayout>

@@ -1,12 +1,10 @@
-package yorum.mac.com.macyorumandroid;
+package mac.yorum.android.app.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public class CouponListActivity extends Activity {
+import yorum.mac.com.macyorumandroid.R;
 
-
-
+public class CouponListActivity extends BaseAppCompatActivitiy {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
