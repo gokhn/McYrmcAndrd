@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 
 public interface RefrofitClass {
 
-    @POST("/AirMobileLogon/Post")
+    @POST("Mobil/Giris")
     Call<LoginResponse>Login(@Header("Authorization-Token") String token,
                              @Header("Content-Type") String contenttype,
                              @Body LoginRequest loginRequest);
