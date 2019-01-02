@@ -123,8 +123,11 @@ public class LoginActivity extends BaseAppCompatActivitiy {
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .build();
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(UrlConfig.API_RETROFIT).addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient).build();
+        Retrofit retrofit =
+                     new Retrofit.Builder()
+                        .baseUrl(UrlConfig.API_RETROFIT)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .client(okHttpClient).build();
         RefrofitClass apiservice = retrofit.create(RefrofitClass.class);
         Call<LoginResponse> servicecall = apiservice.Login(Constants.API_KEY,"text/json;charset=UTF-8",loginRequest);
         servicecall.enqueue(new Callback<LoginResponse>() {
@@ -142,12 +145,13 @@ public class LoginActivity extends BaseAppCompatActivitiy {
                         LoginResponse responseBody =  response.body();
                         closeKeyboard();
 
-                        if(!responseBody.Status.equals("200"))
+                        if(responseBody.Status.toString()=="200")
                         {
                             toastMessage(LoginActivity.this, responseBody.Result.toString());
                         }
                         else
                         {
+                            toastMessage(LoginActivity.this,"sdfsdfsdf");
                             /*
                             Gson gson = new Gson();
                             String res = gson.toJson(response.body());

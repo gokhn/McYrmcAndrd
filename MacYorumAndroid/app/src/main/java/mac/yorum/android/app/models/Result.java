@@ -6,6 +6,7 @@ public class Result {
 
     public String Id;
     public String refId;
+    public String refKullaniciGrup;
     public String ReferansKodu ;
     public String KullaniciGrupAd ;
     public String Token ;
@@ -18,7 +19,7 @@ public class Result {
     public ArrayList<Yetki> Yetkiler;
 
 
-    public String refKullaniciGrup;
+
 
     public String getId() {
         return Id;
