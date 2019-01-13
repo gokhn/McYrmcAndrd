@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/backgroundcolor"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:letterSpacing="0.0625"
             android:text="@string/matchestoday"
-            android:textColor="@color/matchestoday"
+            android:textColor="@color/white"
             android:textSize="13.31sp" />
 
 

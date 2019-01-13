@@ -2,16 +2,20 @@ package mac.yorum.android.app.models.mainmodels;
 
 public class Coupon {
 
-
     public String Id;
-    public String CouponName;
-    public String CouponType;
-    public String CouponExpiredDate;
-    public String CouponDescription;
-    public String TotalMatch;
-    public String TotalRate;
-    public String TotalPrice;
-    public String TotalEarn;
+    public String refKullanici;
+    public String refKuponTipi;
+    public String KuponAd;
+    public String Aciklama;
+    public String OkunmaSayisi;
+    public String KuponFiyat;
+    public String KazancFiyat;
+    public String MacAdedi;
+    public String ToplamOran;
+    public String GecerlilikSuresi;
+    public  String Aktif;
+    public String KuponOlusturan;
+    public String KuponTipi;
 
     public String getId() {
         return Id;
@@ -21,67 +25,108 @@ public class Coupon {
         Id = id;
     }
 
-    public String getCouponName() {
-        return CouponName;
+    public String getRefKullanici() {
+        return refKullanici;
     }
 
-    public void setCouponName(String couponName) {
-        CouponName = couponName;
+    public void setRefKullanici(String refKullanici) {
+        this.refKullanici = refKullanici;
     }
 
-    public String getCouponType() {
-        return CouponType;
+    public String getRefKuponTipi() {
+        return refKuponTipi;
     }
 
-    public void setCouponType(String couponType) {
-        CouponType = couponType;
+    public void setRefKuponTipi(String refKuponTipi) {
+        this.refKuponTipi = refKuponTipi;
     }
 
-    public String getCouponExpiredDate() {
-        return CouponExpiredDate;
+    public String getKuponAd() {
+        return KuponAd;
     }
 
-    public void setCouponExpiredDate(String couponExpiredDate) {
-        CouponExpiredDate = couponExpiredDate;
+    public void setKuponAd(String kuponAd) {
+        KuponAd = kuponAd;
     }
 
-    public String getCouponDescription() {
-        return CouponDescription;
+    public String getAciklama() {
+        return Aciklama;
     }
 
-    public void setCouponDescription(String couponDescription) {
-        CouponDescription = couponDescription;
+    public void setAciklama(String aciklama) {
+        Aciklama = aciklama;
     }
 
-    public String getTotalMatch() {
-        return TotalMatch;
+    public String getOkunmaSayisi() {
+        return OkunmaSayisi;
     }
 
-    public void setTotalMatch(String totalMatch) {
-        TotalMatch = totalMatch;
+    public void setOkunmaSayisi(String okunmaSayisi) {
+        OkunmaSayisi = okunmaSayisi;
     }
 
-    public String getTotalRate() {
-        return TotalRate;
+    public String getKuponFiyat() {
+        return KuponFiyat;
     }
 
-    public void setTotalRate(String totalRate) {
-        TotalRate = totalRate;
+    public void setKuponFiyat(String kuponFiyat) {
+        KuponFiyat = kuponFiyat;
     }
 
-    public String getTotalPrice() {
-        return TotalPrice;
+    public String getKazancFiyat() {
+        return KazancFiyat;
     }
 
-    public void setTotalPrice(String totalPrice) {
-        TotalPrice = totalPrice;
+    public void setKazancFiyat(String kazancFiyat) {
+        KazancFiyat = kazancFiyat;
     }
 
-    public String getTotalEarn() {
-        return TotalEarn;
+    public String getMacAdedi() {
+        return MacAdedi;
     }
 
-    public void setTotalEarn(String totalEarn) {
-        TotalEarn = totalEarn;
+    public void setMacAdedi(String macAdedi) {
+        MacAdedi = macAdedi;
     }
+
+    public String getToplamOran() {
+        return ToplamOran;
+    }
+
+    public void setToplamOran(String toplamOran) {
+        ToplamOran = toplamOran;
+    }
+
+    public String getGecerlilikSuresi() {
+        return GecerlilikSuresi;
+    }
+
+    public void setGecerlilikSuresi(String gecerlilikSuresi) {
+        GecerlilikSuresi = gecerlilikSuresi;
+    }
+
+    public String getAktif() {
+        return Aktif;
+    }
+
+    public void setAktif(String aktif) {
+        Aktif = aktif;
+    }
+
+    public String getKuponOlusturan() {
+        return KuponOlusturan;
+    }
+
+    public void setKuponOlusturan(String kuponOlusturan) {
+        KuponOlusturan = kuponOlusturan;
+    }
+
+    public String getKuponTipi() {
+        return KuponTipi;
+    }
+
+    public void setKuponTipi(String kuponTipi) {
+        KuponTipi = kuponTipi;
+    }
+
 }

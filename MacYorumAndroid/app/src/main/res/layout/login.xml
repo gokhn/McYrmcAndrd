@@ -82,7 +82,7 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#009a9a"
+            android:background="@color/signupbuttoncolor"
             android:text="@string/login"
             android:textColor="#d9e5f3"
             android:textStyle="bold"
@@ -108,7 +108,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/ibytes"
+            android:src="@drawable/logo"
             />
     </LinearLayout>
 </RelativeLayout>

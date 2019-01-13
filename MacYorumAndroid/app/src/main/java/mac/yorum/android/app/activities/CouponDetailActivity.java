@@ -11,11 +11,18 @@ public class CouponDetailActivity extends BaseAppCompatActivitiy {
 
     private String id;
 
+    String name;
+    String evsahibi;
+    String konuktakim;
+    String macssati;
+    String yorum;
+    String tahmin;
+    String iddiakodu;
+    String mactipi;
+
     @Override
     protected void onResume() {
         super.onResume();
-        GetList(id);
-
     }
 
     @Override
@@ -23,11 +30,24 @@ public class CouponDetailActivity extends BaseAppCompatActivitiy {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coupon_detail_activity);
 
-        SetFont();
-        initButtons();
         id  = getIntent().getStringExtra("Id");
 
-        GetList(id);
+        evsahibi = getIntent().getStringExtra("EVSAHIBI");
+        konuktakim = getIntent().getStringExtra("KONUKTAKIM");
+        macssati = getIntent().getStringExtra("MACSAATI");
+        yorum = getIntent().getStringExtra("YORUM");
+        tahmin =  getIntent().getStringExtra("TAHMIN");
+        iddiakodu = getIntent().getStringExtra("IDDIAKODU");
+        mactipi =  getIntent().getStringExtra("MACTIPI");
+
+        id  = getIntent().getStringExtra("Id");
+
+        name = getIntent().getStringExtra("KUPONADI");
+
+        SetFont();
+        initButtons();
+
+
     }
 
     private void SetFont()
@@ -40,7 +60,8 @@ public class CouponDetailActivity extends BaseAppCompatActivitiy {
         TextView txt_away = (TextView) findViewById(R.id.txt_away);
         TextView txt_score_prediction = (TextView) findViewById(R.id.txt_score_prediction);
         TextView txt_review = (TextView) findViewById(R.id.txt_review);
-        TextView txt_review_detail = (TextView) findViewById(R.id.txt_review);
+        TextView txt_review_detail = (TextView) findViewById(R.id.txt_review_detail);
+        TextView txt_bedding_code = (TextView) findViewById(R.id.txt_bedding_code);
 
         txt_league.setTypeface(type);
         txt_home.setTypeface(type);
@@ -49,6 +70,16 @@ public class CouponDetailActivity extends BaseAppCompatActivitiy {
         txt_score_prediction.setTypeface(type);
         txt_review.setTypeface(type);
         txt_review_detail.setTypeface(type);
+        txt_bedding_code.setTypeface(type);
+
+        txt_league.setText(mactipi);
+        txt_home.setText(evsahibi);
+        txt_away.setText(konuktakim);
+        txt_date.setText(macssati);
+        txt_score_prediction.setText(tahmin);
+        txt_review_detail.setText(yorum);
+        txt_bedding_code.setText(iddiakodu);
+
     }
 
     private void  initButtons()
@@ -61,11 +92,5 @@ public class CouponDetailActivity extends BaseAppCompatActivitiy {
             }
         });
     }
-    private void GetList(final String reviewId)
-    {
-        showLoadingPopup();
 
-        hideLoadingPopup();
-
-    }
 }

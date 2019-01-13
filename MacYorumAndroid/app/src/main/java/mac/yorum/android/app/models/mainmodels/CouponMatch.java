@@ -3,14 +3,29 @@ package mac.yorum.android.app.models.mainmodels;
 public class CouponMatch {
 
     public  String Id;
-    public String CouponName;
-    public String MatchDate;
-    public String Home;
-    public String Away;
-    public String LeagueName;
-    public  String Prediction;
-    public  String BeddingRate;
-    public  String BeddingCode;
+    public String refMacTipi;
+    public String MacTipi;
+    public String refKupon;
+    public String IddaKodu;
+    public String EvSahibiTakim;
+
+    public  String KonukTakim;
+    public  String refTahmin;
+    public  String Tahmin;
+    public  String Oran;
+    public  String Yorum;
+    public  String MacTarihi;
+    public  String KayitTarihi;
+
+    public String KuponAd;
+
+    public String getKuponAd() {
+        return KuponAd;
+    }
+
+    public void setKuponAd(String kuponAd) {
+        KuponAd = kuponAd;
+    }
 
     public String getId() {
         return Id;
@@ -20,69 +35,100 @@ public class CouponMatch {
         Id = id;
     }
 
-    public String getCouponName() {
-        return CouponName;
+    public String getRefMacTipi() {
+        return refMacTipi;
     }
 
-    public void setCouponName(String couponName) {
-        CouponName = couponName;
+    public void setRefMacTipi(String refMacTipi) {
+        this.refMacTipi = refMacTipi;
     }
 
-    public String getMatchDate() {
-        return MatchDate;
+    public String getMacTipi() {
+        return MacTipi;
     }
 
-    public void setMatchDate(String matchDate) {
-        MatchDate = matchDate;
+    public void setMacTipi(String macTipi) {
+        MacTipi = macTipi;
     }
 
-    public String getHome() {
-        return Home;
+    public String getRefKupon() {
+        return refKupon;
     }
 
-    public void setHome(String home) {
-        Home = home;
+    public void setRefKupon(String refKupon) {
+        this.refKupon = refKupon;
     }
 
-    public String getAway() {
-        return Away;
+    public String getIddaKodu() {
+        return IddaKodu;
     }
 
-    public void setAway(String away) {
-        Away = away;
+    public void setIddaKodu(String iddaKodu) {
+        IddaKodu = iddaKodu;
     }
 
-    public String getLeagueName() {
-        return LeagueName;
+    public String getEvSahibiTakim() {
+        return EvSahibiTakim;
     }
 
-    public void setLeagueName(String leagueName) {
-        LeagueName = leagueName;
+    public void setEvSahibiTakim(String evSahibiTakim) {
+        EvSahibiTakim = evSahibiTakim;
     }
 
-    public String getBeddingCode() {
-        return BeddingCode;
+    public String getKonukTakim() {
+        return KonukTakim;
     }
 
-    public void setBeddingCode(String beddingCode) {
-        BeddingCode = beddingCode;
+    public void setKonukTakim(String konukTakim) {
+        KonukTakim = konukTakim;
     }
 
-    public String getPrediction() {
-        return Prediction;
+    public String getRefTahmin() {
+        return refTahmin;
     }
 
-    public void setPrediction(String prediction) {
-        Prediction = prediction;
+    public void setRefTahmin(String refTahmin) {
+        this.refTahmin = refTahmin;
     }
 
-    public String getBeddingRate() {
-        return BeddingRate;
+    public String getTahmin() {
+        return Tahmin;
     }
 
-    public void setBeddingRate(String beddingRate) {
-        BeddingRate = beddingRate;
+    public void setTahmin(String tahmin) {
+        Tahmin = tahmin;
     }
 
+    public String getOran() {
+        return Oran;
+    }
+
+    public void setOran(String oran) {
+        Oran = oran;
+    }
+
+    public String getYorum() {
+        return Yorum;
+    }
+
+    public void setYorum(String yorum) {
+        Yorum = yorum;
+    }
+
+    public String getMacTarihi() {
+        return MacTarihi;
+    }
+
+    public void setMacTarihi(String macTarihi) {
+        MacTarihi = macTarihi;
+    }
+
+    public String getKayitTarihi() {
+        return KayitTarihi;
+    }
+
+    public void setKayitTarihi(String kayitTarihi) {
+        KayitTarihi = kayitTarihi;
+    }
 
 }

@@ -1,14 +1,17 @@
 package mac.yorum.android.app.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import mac.yorum.android.app.configs.Constants;
@@ -16,6 +19,7 @@ import mac.yorum.android.app.configs.UrlConfig;
 import mac.yorum.android.app.helpers.ValidationHelper;
 import mac.yorum.android.app.models.LoginRequest;
 import mac.yorum.android.app.models.LoginResponse;
+import mac.yorum.android.app.models.Result;
 import mac.yorum.android.app.retrofit.RefrofitClass;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -26,18 +30,17 @@ import yorum.mac.com.macyorumandroid.R;
 
 public class LoginActivity extends BaseAppCompatActivitiy {
 
-
+    private SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        newActivity(new MainActivity());
-
-        /*
         SetFont();
         initButtons();
-        */
+
     }
 
     @Override
@@ -54,15 +57,13 @@ public class LoginActivity extends BaseAppCompatActivitiy {
         EditText edt_username = findEditTextById(R.id.edt_username);
         EditText edt_password = findEditTextById(R.id.edt_password);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/LatoLight.ttf");
+        Typeface type = Typeface.createFromAsset(getAssets(),"fonts/Roboto-Medium.ttf");
 
-        Typeface custom_font1 = Typeface.createFromAsset(getAssets(), "fonts/LatoRegular.ttf");
+        btn_signup.setTypeface(type);
+        btn_login.setTypeface(type);
 
-        btn_signup.setTypeface(custom_font);
-        btn_login.setTypeface(custom_font1);
-
-        edt_username.setTypeface(custom_font);
-        edt_password.setTypeface(custom_font);
+        edt_username.setTypeface(type);
+        edt_password.setTypeface(type);
 
 
     }
@@ -105,21 +106,20 @@ public class LoginActivity extends BaseAppCompatActivitiy {
             return true;
     }
 
-    private void doLoginUseToRetrofit(final String userName, final String password) {
+    private void doLoginUseToRetrofit(final String userName, final String password)
+    {
         showLoadingPopup();
 
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.kullaniciadi = userName;
-        loginRequest.parola = password;
-        loginRequest.deviceId = "123";
-        loginRequest.platform = "MOBIL";
-        loginRequest.platformToken = "456";
+        loginRequest.KullaniciAdi = userName;
+        loginRequest.Parola = password;
+        loginRequest._Platform = "MOBIL";
+        loginRequest.PlatformToken = "456";
 
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(120, TimeUnit.SECONDS)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .build();
-
 
         Retrofit retrofit =
                 new Retrofit.Builder()
@@ -127,39 +127,37 @@ public class LoginActivity extends BaseAppCompatActivitiy {
                         .addConverterFactory(GsonConverterFactory.create())
                         .client(okHttpClient).build();
         RefrofitClass apiservice = retrofit.create(RefrofitClass.class);
-        Call<LoginResponse> servicecall = apiservice.Login(Constants.API_KEY, "text/json;charset=UTF-8", loginRequest);
+        Call<LoginResponse> servicecall = apiservice.Login(Constants.API_KEY,"", "text/json;charset=UTF-8", loginRequest);
         servicecall.enqueue(new Callback<LoginResponse>() {
 
 
             @Override
             public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response) {
-                try {
+                try
+                {
                     if (response.isSuccessful() && response.body() != null) {
 
                         LoginResponse responseBody = response.body();
                         closeKeyboard();
 
-                        if (responseBody.Status.toString() == "200") {
-                            toastMessage(LoginActivity.this, responseBody.Result.toString());
-                        } else {
-                            toastMessage(LoginActivity.this, "sdfsdfsdf");
-                            /*
-                            Gson gson = new Gson();
-                            String res = gson.toJson(response.body());
-                            AppEngine.USERNAME = userName;
-                            AppEngine.PASSWORD = password;
+                        if (!responseBody.Status.equals("200"))
+                        {
+                            toastMessage(LoginActivity.this, responseBody.Message);
+                        }
+                        else
+                            {
+                               ArrayList<Result> res = response.body().Result;
 
                             SharedPreferences.Editor edit = prefs.edit();
-                            edit.putString("CurrentUser", res);
-                            edit.putBoolean("IsFirstLogin", false);
-                            edit.putString("USERNAME",userName);
-                            edit.putString("PASSWORD",password);
+
+                            edit.putString("Token",res.get(0).getToken());
+                            edit.putString("ReferansKodu",res.get(0).getReferansKodu());
 
                             edit.commit();
-                            finish();
+                            //finish();
                             closeKeyboard();
-                            newActivity(new PositionListNewVersion(),Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            */
+                            newActivity(new MainActivity(),Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                         }
                         hideLoadingPopup();
                     } else {

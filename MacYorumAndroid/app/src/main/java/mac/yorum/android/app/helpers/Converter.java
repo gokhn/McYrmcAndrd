@@ -54,7 +54,7 @@ public class Converter {
 			try
 		{
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-			DateFormat resultFormat = new SimpleDateFormat("dd.MM.yyyy");
+			DateFormat resultFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 			result = resultFormat.format(dateFormat.parse(date.trim()));
 		}
 		catch (ParseException e) {

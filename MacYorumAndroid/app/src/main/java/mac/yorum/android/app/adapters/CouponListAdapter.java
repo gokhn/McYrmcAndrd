@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import mac.yorum.android.app.activities.CouponListActivity;
+import mac.yorum.android.app.helpers.Converter;
 import mac.yorum.android.app.models.mainmodels.Coupon;
 import yorum.mac.com.macyorumandroid.R;
 
@@ -39,6 +40,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
     public void onBindViewHolder(final CouponListAdapter.SimpleViewHolder vi, final int position) {
         final Coupon item = couponList.get(position);
 
+
         vi.txt_coupon_name.setTypeface(type);
         vi.txt_coupon_type.setTypeface(type);
         vi.txt_description.setTypeface(type);
@@ -48,25 +50,26 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
         vi.txt_coupon_price.setTypeface(type);
         vi.txt_max_earn.setTypeface(type);
 
-        vi.txt_coupon_name.setText(item.getCouponName());
-        vi.txt_coupon_type.setText(item.getCouponType());
-        //vi.txt_expired_date.setText(Converter.stringToShortDate(item.getCouponExpiredDate()));
-        vi.txt_description.setText(item.getCouponDescription());
+        vi.txt_coupon_name.setText(item.getKuponAd());
+        vi.txt_coupon_type.setText(item.getKuponTipi());
+        vi.txt_expired_date.setText(Converter.stringToShortDate(item.getGecerlilikSuresi()));
+        vi.txt_description.setText(item.getAciklama());
 
-        vi.txt_total_match.setText(mContext.getString(R.string.match) +" " +item.getTotalMatch());
-        vi.txt_rate.setText(mContext.getString(R.string.rate) +" " + item.getTotalRate());
-        vi.txt_coupon_price.setText(mContext.getString(R.string.amount) +" " +  item.getTotalPrice());
-        vi.txt_max_earn.setText(mContext.getString(R.string.earn) +" " +  item.getTotalEarn());
+        vi.txt_total_match.setText(mContext.getString(R.string.match) +" " +item.getMacAdedi());
+        vi.txt_rate.setText(mContext.getString(R.string.rate) +" " + item.getToplamOran());
+        vi.txt_coupon_price.setText(mContext.getString(R.string.amount) +" " +  item.getKuponFiyat());
+        vi.txt_max_earn.setText(mContext.getString(R.string.earn) +" " +  item.getKazancFiyat());
 
 
         vi.lnr_selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ((CouponListActivity)mContext).callCouponDetailActivity(item.getId(),item.getCouponName());
+                ((CouponListActivity)mContext).callCouponDetailActivity(item.getId(),item.getKuponAd());
 
             }
         });
+
     }
 
     @Override

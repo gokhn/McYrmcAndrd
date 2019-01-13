@@ -20,4 +20,7 @@
     <color name="colorBackroundWhite">#f0f2ea</color>
     <color name="colorGray">#495C67</color>
 
+    <color name="backgroundcolor">#1f262d</color>
+    <color name="signupbuttoncolor">#08df0a</color>
+
 </resources>

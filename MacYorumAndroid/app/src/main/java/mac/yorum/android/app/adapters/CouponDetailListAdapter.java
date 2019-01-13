@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import mac.yorum.android.app.activities.CouponDetailListActivity;
+import mac.yorum.android.app.helpers.Converter;
 import mac.yorum.android.app.models.mainmodels.CouponMatch;
 import yorum.mac.com.macyorumandroid.R;
 
@@ -48,20 +49,20 @@ public class CouponDetailListAdapter extends RecyclerView.Adapter<CouponDetailLi
         vi.txt_bedding_code.setTypeface(type);
         vi.txt_rate.setTypeface(type);
 
-        vi.txt_home.setText(item.getHome());
-        vi.txt_away.setText(item.getAway());
-        vi.txt_league.setText(item.getLeagueName());
-       // vi.txt_match_date.setText(Converter.stringToShortDate(item.getMatchDate()));
-        vi.txt_rate.setText(item.getBeddingRate());
+        vi.txt_home.setText(item.getEvSahibiTakim());
+        vi.txt_away.setText(item.getKonukTakim());
+        vi.txt_league.setText(item.getMacTipi());
+        vi.txt_match_date.setText(Converter.stringToShortDate(item.getMacTarihi()));
+        vi.txt_rate.setText(item.getOran());
 
-        vi.txt_prediction.setText(mContext.getString(R.string.prediction) +item.getPrediction());
-        vi.txt_bedding_code.setText(item.getBeddingCode());
+        vi.txt_prediction.setText(mContext.getString(R.string.prediction) +item.getTahmin());
+        vi.txt_bedding_code.setText(item.getIddaKodu());
 
         vi.lnr_selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ((CouponDetailListActivity)mContext).callDetailActivity(item.getId(),item.getCouponName());
+                ((CouponDetailListActivity)mContext).callDetailActivity(item.getId(),item.getEvSahibiTakim(),item.getKonukTakim(),item.getMacTarihi(),item.getYorum(),item.getTahmin(),item.getIddaKodu(),item.getMacTipi(),item.getKuponAd());
             }
         });
     }

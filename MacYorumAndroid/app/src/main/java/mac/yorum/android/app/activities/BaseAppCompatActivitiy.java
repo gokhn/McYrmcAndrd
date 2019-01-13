@@ -121,6 +121,25 @@ public class BaseAppCompatActivitiy extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.animation_in_left_fast, R.anim.animation_in_right);
     }
+
+    public void newActivity(Activity newActivity, String id, String evsahibi,String konuktakim,String macssati,String yorum,
+                            String tahmin,String iddakodu,String mactipi,String kuponad)
+    {
+        Intent intent = new Intent(this, newActivity.getClass());
+        intent.putExtra("Id", id);
+        intent.putExtra("EVSAHIBI", evsahibi);
+        intent.putExtra("KONUKTAKIM", konuktakim);
+        intent.putExtra("MACSAATI", macssati);
+        intent.putExtra("YORUM", yorum);
+        intent.putExtra("TAHMIN", tahmin);
+        intent.putExtra("IDDIAKODU", iddakodu);
+        intent.putExtra("MACTIPI", mactipi);
+        intent.putExtra("KUPONADI", mactipi);
+
+        startActivity(intent);
+        overridePendingTransition(R.anim.animation_in_left_fast, R.anim.animation_in_right);
+    }
+
     public void newActivityCamera(Activity newActivity, String JSONString)
     {
         Intent intent = new Intent(this, newActivity.getClass());
