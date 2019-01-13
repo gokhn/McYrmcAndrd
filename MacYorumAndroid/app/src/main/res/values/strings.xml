@@ -9,5 +9,35 @@
     <string name="password">Parola</string>
     <string name="login">Giriş</string>
     <string name="error_found">Hata Oluştu.</string>
+    <string name="matchreviews"> Maç Yorumları</string>
+    <string name="matchestoday">Günün Maçları</string>
+    <string name="no_result">Kayıt Bulunamadı...</string>
+    <string name="matchreviewtitle">Maçın Yorumu</string>
+
+
+    <string name="samplereview">  Fransa Lig Kupası çeyrek finalinde Monaco’nun konuğu Rennes olacak. Ev sahibi Monaco bu sezonki kötü gidişata rağmen bu kupada çeyrek finale kadar yükseldi. Ancak Lig 1’de oynadıkları son karşılaşmada son sıradaki Guingamp’a mağlup oldular.
+        \nUzun süredir de düşme potasından çıkamadılar. Konuk Rennes ise oldukça formda. Son 6 maçlarından 5 galibiyet, 1 beraberlik çıkardılar.
+            \n\nBeraberliği de kupa maçında aldılar. Rennes son 10 maçının tamamında gol atmayı başardı. Monaco savunma anlamında büyük sıkıntılar yaşıyor.
+        İyi oranıyla 02 çifte şansı önereceğim. Ancak sürpriz kuponlarda konuk ekip galibiyeti  yer alabilir.
+
+        \n\n   Fransa Lig Kupası çeyrek finalinde Monaco’nun konuğu Rennes olacak. Ev sahibi Monaco bu sezonki kötü gidişata rağmen bu kupada çeyrek finale kadar yükseldi. Ancak Lig 1’de oynadıkları son karşılaşmada son sıradaki Guingamp’a mağlup oldular.
+        \nUzun süredir de düşme potasından çıkamadılar. Konuk Rennes ise oldukça formda. Son 6 maçlarından 5 galibiyet, 1 beraberlik çıkardılar.
+            \n\nBeraberliği de kupa maçında aldılar. Rennes son 10 maçının tamamında gol atmayı başardı. Monaco savunma anlamında büyük sıkıntılar yaşıyor.
+        İyi oranıyla 02 çifte şansı önereceğim. Ancak sürpriz kuponlarda konuk ekip galibiyeti  yer alabilir.
+    </string>
+
+
+    <string name="coupon">Kupon</string>
+    <string name="coupons">Kuponlar</string>
+    <string name="guarantee">Banko</string>
+    <string name="fold">Misli</string>
+    <string name="guaranteecoupon">Banko Kuponlar</string>
+    <string name="foldcoupon">Misli Kuponlar</string>
+    <string name="match">Maç:</string>
+    <string name="rate">Oran:</string>
+    <string name="amount">Tutar:</string>
+    <string name="earn">Kazanç:</string>
+
+    <string name="prediction">Tahmin:</string>
 
 </resources>

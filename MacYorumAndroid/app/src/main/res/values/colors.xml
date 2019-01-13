@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="whitesecond">#f1f2f5</color>
+    <color name="black">#000000</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparent">#00000000</color>
     <color name="transparent_semi">#44000000</color>
     <color name="transparent_80">#bb000000</color>
+    <color name = "gray">#bfbfbf</color>
+    <color name = "white">#ffffff</color>
+    <color name="matchestoday">#383838</color>
+    <color name="semired">#ff3300</color>
+    <color name="red">#e85050</color>
+    <color name="home_away_team">#383838</color>
+    <color name="text_blue_light">#9ebed5</color>
+
+    <color name="colorBackroundWhite">#f0f2ea</color>
+    <color name="colorGray">#495C67</color>
+
 </resources>

@@ -11,5 +11,7 @@ public class UrlConfig {
 
 	public static final String API_RETROFIT = LOCALHOST;
 
+	public static final String GIRISDENEME = API +"/Mobil/Giris?kullaniciadi=%s&parola=%s&platform=%splatformToken=%s";
+
 
 }
