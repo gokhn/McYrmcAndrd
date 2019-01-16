@@ -152,6 +152,8 @@ public class LoginActivity extends BaseAppCompatActivitiy {
 
                             edit.putString("Token",res.get(0).getToken());
                             edit.putString("ReferansKodu",res.get(0).getReferansKodu());
+                                edit.putString("KullaniciAdi",userName);
+                                edit.putString("Parola",password);
 
                             edit.commit();
                             //finish();

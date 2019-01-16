@@ -1,7 +1,11 @@
 package mac.yorum.android.app.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +14,8 @@ import yorum.mac.com.macyorumandroid.R;
 
 public class LauncherActivity extends BaseAppCompatActivitiy {
 
+    private int SPLASH_DURATION = 2000;
+    private SharedPreferences prefs;
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         closeKeyboard();
@@ -18,12 +24,49 @@ public class LauncherActivity extends BaseAppCompatActivitiy {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launcher_activity);
 
         SetFont();
         initButtons();
 
+        showLoadingPopup();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run()
+            {
+
+                if(checkIsAlreadyLogin())
+                {
+                    newActivity(new MainActivity(), Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    LauncherActivity.this.finish();
+                }
+                hideLoadingPopup();
+            }
+        }, SPLASH_DURATION);
+
+    }
+
+    public boolean checkIsAlreadyLogin()
+    {
+        String kullaniciAdi = prefs.getString("KullaniciAdi", "");
+        String parola = prefs.getString("Parola", "");
+        String token = prefs.getString("Token", "");
+        String referansKodu = prefs.getString("ReferansKodu", "");
+        if(!kullaniciAdi.equals("") && !parola.equals("") && !token.equals("") && !referansKodu.equals(""))
+        {
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void SetFont()

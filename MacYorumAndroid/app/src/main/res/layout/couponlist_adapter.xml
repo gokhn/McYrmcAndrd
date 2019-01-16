@@ -5,15 +5,15 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-<android.support.v7.widget.CardView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginBottom="10dp"
-    app:cardCornerRadius="9dp"
-    app:cardElevation="1dp">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="4dp"
+        app:cardCornerRadius="9dp"
+        app:cardElevation="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +22,7 @@
 
             <View
                 android:layout_width="5dp"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:background="@color/colorPrimary">
 
             </View>
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="Kupon1"
+
                     android:textColor="@color/colorGray"
                     android:textSize="14dp"
                     android:textStyle="bold" />
@@ -61,7 +61,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="Misli"
+
                         android:textColor="@color/colorPrimary"
                         android:textSize="12dp"
                         android:textStyle="bold" />
@@ -88,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="12/01/2019 23:15"
+
                         android:textColor="@color/red"
                         android:textSize="12dp"
                         android:textStyle="normal" />
@@ -97,17 +97,18 @@
                 <LinearLayout
                     android:id="@+id/lbl_description"
                     android:layout_width="match_parent"
-                    android:layout_below="@id/linear"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/linear"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/txt_description"
                         android:layout_width="100dp"
-                        android:singleLine="true"
                         android:layout_height="wrap_content"
-                        android:text="Kupon acıklaması"
+                        android:singleLine="true"
+
                         android:textColor="@color/black"
                         android:textSize="12dp"
                         android:textStyle="italic" />
@@ -115,6 +116,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lnr_detailsub"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/lbl_description"
@@ -166,6 +168,17 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/txt_register_date"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/lnr_detailsub"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text=""
+                    android:textColor="@color/colorGray"
+                    android:textSize="12dp"
+                     />
             </RelativeLayout>
         </LinearLayout>
 

@@ -134,7 +134,25 @@ public class BaseAppCompatActivitiy extends AppCompatActivity {
         intent.putExtra("TAHMIN", tahmin);
         intent.putExtra("IDDIAKODU", iddakodu);
         intent.putExtra("MACTIPI", mactipi);
-        intent.putExtra("KUPONADI", mactipi);
+        intent.putExtra("KUPONADI", kuponad);
+
+        startActivity(intent);
+        overridePendingTransition(R.anim.animation_in_left_fast, R.anim.animation_in_right);
+    }
+
+    //(String id,String evsahibi,String konuk,String iddiaKodu,String mactarihi,String macsonucu,String yorum)
+    public void newActivity(Activity newActivity, String id, String evsahibi,String konuktakim,String iddiaKodu,String mactarihi,
+                            String macsonucu,String yorum,String oran)
+    {
+        Intent intent = new Intent(this, newActivity.getClass());
+        intent.putExtra("Id", id);
+        intent.putExtra("EVSAHIBI", evsahibi);
+        intent.putExtra("KONUKTAKIM", konuktakim);
+        intent.putExtra("IDDIAKODU", iddiaKodu);
+        intent.putExtra("MACTARIHI", mactarihi);
+        intent.putExtra("MACSONUCU", macsonucu);
+        intent.putExtra("YORUM", yorum);
+        intent.putExtra("ORAN", oran);
 
         startActivity(intent);
         overridePendingTransition(R.anim.animation_in_left_fast, R.anim.animation_in_right);

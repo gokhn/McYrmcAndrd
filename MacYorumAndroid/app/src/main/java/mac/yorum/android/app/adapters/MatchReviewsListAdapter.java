@@ -51,18 +51,21 @@ public class MatchReviewsListAdapter extends RecyclerView.Adapter<MatchReviewsLi
         vi.txt_summary.setTypeface(type);
         vi.txt_bedding_code.setTypeface(type);
 
-        vi.txt_home.setText(item.getHome());
-        vi.txt_away.setText(item.getAway());
-        vi.txt_league.setText(item.getLeagueName());
-        vi.txt_match_date.setText(Converter.stringToShortDate(item.getMatchDate()));
-        vi.txt_summary.setText(item.getSummary());
-        vi.txt_bedding_code.setText(item.getBeddingCode());
+        vi.txt_home.setText(item.getEvSahibiTakim());
+        vi.txt_away.setText(item.getKonukTakim());
+        vi.txt_league.setText("Oran:"+item.getOran());
+        vi.txt_match_date.setText(Converter.stringToShortDate(item.getMacTarihi()));
+
+        vi.txt_summary.setText(item.getMacSonucu());
+
+        vi.txt_bedding_code.setText(item.getIddaKodu());
 
         vi.lnr_selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ((MatchReviewsListActivity)mContext).callMatchReviewsDetailActivity(item.getId());
+                                                //new MatchReviewsDetailActivity(),id,evsahibi,konuk,iddiaKodu,mactarihi,macsonucu,yorum
+                ((MatchReviewsListActivity)mContext).callMatchReviewsDetailActivity(item.getId(),item.getEvSahibiTakim(),
+                        item.getKonukTakim(),item.getIddaKodu(),item.getMacTarihi(),item.getMacSonucu(),item.getMacYorumu(),item.getOran());
 
             }
         });

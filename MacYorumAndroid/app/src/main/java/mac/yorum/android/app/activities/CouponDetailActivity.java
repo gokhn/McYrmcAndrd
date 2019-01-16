@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import mac.yorum.android.app.helpers.Converter;
 import yorum.mac.com.macyorumandroid.R;
 
 public class CouponDetailActivity extends BaseAppCompatActivitiy {
@@ -75,7 +76,7 @@ public class CouponDetailActivity extends BaseAppCompatActivitiy {
         txt_league.setText(mactipi);
         txt_home.setText(evsahibi);
         txt_away.setText(konuktakim);
-        txt_date.setText(macssati);
+        txt_date.setText(Converter.stringToShortDate(macssati));
         txt_score_prediction.setText(tahmin);
         txt_review_detail.setText(yorum);
         txt_bedding_code.setText(iddiakodu);

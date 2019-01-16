@@ -53,7 +53,7 @@
                         android:layout_centerInParent="true"
                         android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="Süper Lig"
+
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
@@ -66,7 +66,7 @@
                         android:paddingLeft="18dp"
                         android:paddingRight="18dp"
                         android:layout_alignParentRight="true"
-                        android:text="5048"
+
                         android:textColor="@color/white"
                         android:textSize="13sp" />
 
@@ -91,7 +91,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:paddingLeft="5dp"
-                        android:text="Beşiktaş"
+
                         android:textColor="@color/home_away_team"
                         android:textSize="12.7sp" />
 
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="09/01/2019 21:45"
+
                         android:textColor="@color/white"
                         android:textSize="11.7sp" />
 
@@ -126,7 +126,7 @@
                         android:gravity="center"
                         android:paddingRight="5dp"
                         android:textStyle="bold"
-                        android:text="Fenerbahçe"
+
                         android:textColor="@color/home_away_team"
                         android:textSize="12.7sp" />
 
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="40dp"
-                    android:text="Tahmin: "
+
                     android:textColor="@color/semired"
                     android:textSize="14sp" />
 
@@ -196,7 +196,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/samplereview"
                             android:textColor="@color/black"
                             android:textSize="13.3sp" />
 

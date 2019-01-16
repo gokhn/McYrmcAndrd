@@ -16,6 +16,17 @@ public class Coupon {
     public  String Aktif;
     public String KuponOlusturan;
     public String KuponTipi;
+    public String KayitTarihi;
+
+    public String getKayitTarihi() {
+        return KayitTarihi;
+    }
+
+    public void setKayitTarihi(String kayitTarihi) {
+        KayitTarihi = kayitTarihi;
+    }
+
+
 
     public String getId() {
         return Id;

@@ -1,12 +1,15 @@
 package mac.yorum.android.app.activities;
 
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -14,23 +17,41 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import mac.yorum.android.app.adapters.EmptyListAdapter;
 import mac.yorum.android.app.adapters.MatchReviewsListAdapter;
+import mac.yorum.android.app.configs.Constants;
+import mac.yorum.android.app.configs.UrlConfig;
+import mac.yorum.android.app.models.LoginResponse;
+import mac.yorum.android.app.models.Result;
 import mac.yorum.android.app.models.mainmodels.MatchReviewsList;
+import mac.yorum.android.app.retrofit.RefrofitClass;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import yorum.mac.com.macyorumandroid.R;
 
 public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
 {
 
+    private SharedPreferences prefs;
     RecyclerView mRecyclerView;
     EmptyListAdapter mAdapyerEmpty;
     MatchReviewsListAdapter mAdapter;
+    String Token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matchreviewslistactivity);
+
+        Token =  prefs.getString("Token","");
 
         SetFont();
         String curDate = getCurrentDate();
@@ -111,25 +132,99 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
     }
     private void GetList(final String currentDate)
     {
-        MatchReviewsList matchReviewsList = new MatchReviewsList();
-        matchReviewsList.Home = "Beşiktaş";
-        matchReviewsList.Away = "Fenerbahçe";
-        matchReviewsList.LeagueName = "Spor Toto 1.lig";
-        matchReviewsList.MatchDate = "19:00";
-        matchReviewsList.Summary = "İki takım adına zor bir...";
-        matchReviewsList.Id = "123";
-        matchReviewsList.BeddingCode = "5048";
-
-        ArrayList<MatchReviewsList> matchReviewsListArrayList = new ArrayList<>();
+        showLoadingPopup();
 
 
-        matchReviewsListArrayList.add(matchReviewsList);
-        matchReviewsListArrayList.add(matchReviewsList);
-        matchReviewsListArrayList.add(matchReviewsList);
-        matchReviewsListArrayList.add(matchReviewsList);
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit =
+                new Retrofit.Builder()
+                        .baseUrl(UrlConfig.API_RETROFIT)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .client(okHttpClient).build();
+        RefrofitClass apiservice = retrofit.create(RefrofitClass.class);
+        Call<LoginResponse> servicecall = apiservice.MacYorumListe(Constants.API_KEY,Token, "text/json;charset=UTF-8", currentDate);
+        servicecall.enqueue(new Callback<LoginResponse>() {
+
+            @Override
+            public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response)
+            {
+                try
+                {
+                    if (response.isSuccessful() && response.body() != null)
+                    {
+                        final  ArrayList<MatchReviewsList> lists = new ArrayList<MatchReviewsList>();
+                        LoginResponse responseBody = response.body();
+                        closeKeyboard();
+
+                        if (!responseBody.Status.equals("200"))
+                        {
+                            toastMessage(MatchReviewsListActivity.this, responseBody.Message.toString());
+                        }
+                        else
+                        {
+                            if(response.body().Result == null)
+                            {
+                                toastMessage(MatchReviewsListActivity.this, responseBody.Message.toString());
+                            }
+                            else
+                            {
+                                ArrayList<Result>  res = response.body().Result;
+
+                                for(int i=0; i<res.size();i++)
+                                {
+                                    MatchReviewsList item = new MatchReviewsList();
+                                    item.setId(res.get(i).getId());
+                                    item.setRefKullanici(res.get(i).getRefKullanici());
+                                    item.setIddaKodu(res.get(i).getIddaKodu());
+                                    item.setYorumOlusturan(res.get(i).getYorumOlusturan());
+                                    item.setKonukTakim(res.get(i).getKonukTakim());
+                                    item.setEvSahibiTakim(res.get(i).getEvSahibiTakim());
+                                    item.setOran(res.get(i).getOran());
+
+                                    item.setMacTarihi(res.get(i).getMacTarihi());
+                                    item.setMacYorumu(res.get(i).getMacYorumu());
+                                    item.setMacSonucu(res.get(i).getMacSonucu());
+                                    item.setOkunmaSayisi(res.get(i).getOkunmaSayisi());
+                                    item.setKayitTarihi(res.get(i).getKayitTarihi());
+
+                                    lists.add(item);
+                                }
+                            }
 
 
-       binData(matchReviewsListArrayList);
+                        }
+                        hideLoadingPopup();
+
+                        binData(lists);
+                    }
+                    else
+                    {
+                        hideLoadingPopup();
+                        toastMessage(MatchReviewsListActivity.this, getResources().getString(R.string.error_found));
+                    }
+
+                } catch (Exception ex) {
+                    Log.e("exlogin", ex.toString());
+                    hideLoadingPopup();
+                }
+                hideLoadingPopup();
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                toastMessage(MatchReviewsListActivity.this, t.getMessage());
+                hideLoadingPopup();
+            }
+        });
+
+
+
+       //binData(matchReviewsListArrayList);
     }
     private String getCurrentDate()
     {
@@ -164,6 +259,12 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
     public void callMatchReviewsDetailActivity(String id)
     {
         newActivity(new MatchReviewsDetailActivity(),id);
+    }
+
+    public void callMatchReviewsDetailActivity(String id,String evsahibi,String konuk,String iddiaKodu,
+                                               String mactarihi,String macsonucu,String yorum,String oran)
+    {
+        newActivity(new MatchReviewsDetailActivity(),id,evsahibi,konuk,iddiaKodu,mactarihi,macsonucu,yorum,oran);
     }
 
 }

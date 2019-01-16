@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import mac.yorum.android.app.widgets.YesNoPopup;
 import yorum.mac.com.macyorumandroid.R;
 
 public class MainActivity extends BaseAppCompatActivitiy {
@@ -43,8 +44,32 @@ public class MainActivity extends BaseAppCompatActivitiy {
         btn_coupons.setTypeface(type);
     }
 
+    public void clearUser()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Token","");
+        edit.putString("ReferansKodu", "");
+        edit.putString("KullaniciAdi","");
+        edit.putString("Parola","");
+        edit.commit();
+    }
+
     private void initButtons()
     {
+        findViewById(R.id.btn_quit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new YesNoPopup(MainActivity.this, getResources().getString(R.string.do_you_want_to_quit)) {
+                    @Override
+                    protected void OnApplyConfirmation() {
+                       clearUser();
+                       finish();
+                    }
+                };
+            }
+        });
         findViewById(R.id.btn_match_reviews).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

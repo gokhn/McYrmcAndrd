@@ -53,8 +53,16 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
         vi.txt_coupon_name.setText(item.getKuponAd());
         vi.txt_coupon_type.setText(item.getKuponTipi());
         vi.txt_expired_date.setText(Converter.stringToShortDate(item.getGecerlilikSuresi()));
-        vi.txt_description.setText(item.getAciklama());
+        vi.txt_register_date.setText( mContext.getResources().getString(R.string.register_date)+ Converter.stringToShortDate(item.getKayitTarihi()));
 
+
+        if(item.getAciklama().length() >0 && item.getAciklama().length() > 10)
+        {
+            vi.txt_description.setText(item.getAciklama().substring(0,10));
+        }
+        else {
+            vi.txt_description.setText(item.getAciklama());
+        }
         vi.txt_total_match.setText(mContext.getString(R.string.match) +" " +item.getMacAdedi());
         vi.txt_rate.setText(mContext.getString(R.string.rate) +" " + item.getToplamOran());
         vi.txt_coupon_price.setText(mContext.getString(R.string.amount) +" " +  item.getKuponFiyat());
@@ -88,6 +96,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
         TextView txt_rate;
         TextView txt_coupon_price;
         TextView txt_max_earn;
+        TextView txt_register_date;
 
         RelativeLayout lnr_selected;
 
@@ -102,6 +111,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
             txt_rate = vi.findViewById(R.id.txt_rate);
             txt_coupon_price = vi.findViewById(R.id.txt_coupon_price);
             txt_max_earn =  vi.findViewById(R.id.txt_max_earn);
+            txt_register_date = vi.findViewById(R.id.txt_register_date);
 
             lnr_selected = vi.findViewById(R.id.lnr_selected);
         }

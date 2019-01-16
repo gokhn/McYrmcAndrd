@@ -5,6 +5,30 @@
     android:background="@color/backgroundcolor"
 
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:id="@+id/btn_quit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="18dp"
+            android:layout_alignParentRight="true"
+            android:paddingRight="18dp">
+            <TextView
+                android:id="@+id/txt_region_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/quit"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +50,6 @@
             android:id="@+id/txt_refno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Refereans No"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:layout_centerInParent="true"

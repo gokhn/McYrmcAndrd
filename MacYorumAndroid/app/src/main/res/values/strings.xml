@@ -2,6 +2,8 @@
     <string name="app_name">MacYorumAndroid</string>
     <string name="refcode">Referans Kodu</string>
     <string name="nameandsurname">Ad Soyad</string>
+    <string name="emailaddress">Email Adres</string>
+    <string name="phonenumber">Telefon Numarası</string>
     <string name="signup">Kayıt Ol</string>
     <string name="alreadyhaveanaccount">Zaten hesabınız var mı ?</string>
     <string name="field_required">%s alanı boş veya geçersiz</string>
@@ -12,6 +14,8 @@
     <string name="matchreviews"> Maç Yorumları</string>
     <string name="matchestoday">Günün Maçları</string>
     <string name="no_result">Kayıt Bulunamadı...</string>
+    <string name="quit">Çıkış</string>
+
     <string name="matchreviewtitle">Maçın Yorumu</string>
 
 
@@ -37,7 +41,13 @@
     <string name="rate">Oran:</string>
     <string name="amount">Tutar:</string>
     <string name="earn">Kazanç:</string>
+    <string name="register_date">Kayıt Tarihi: </string>
 
     <string name="prediction">Tahmin:</string>
+
+    <string name="cancel">Vazgeç</string>
+    <string name="logout">Çıkış</string>
+    <string name="yes">Evet</string>
+    <string name="do_you_want_to_quit">Çıkış yapmak istediğinize emin misiniz ?</string>
 
 </resources>

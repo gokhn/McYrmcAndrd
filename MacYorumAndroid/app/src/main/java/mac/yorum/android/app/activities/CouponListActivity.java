@@ -1,5 +1,6 @@
 package mac.yorum.android.app.activities;
 
+import android.app.DatePickerDialog;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,9 +11,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import mac.yorum.android.app.adapters.CouponListAdapter;
@@ -46,15 +50,18 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
     @Override
     protected void onResume()
     {
+        String curDate = getCurrentDate();
+        findTextViewById(R.id.txt_date).setText(curDate);
+
         findSwipeRefreshLayoutById(R.id.couponslist_swipe_refresh).setRefreshing(true);
         if(IsCouponGuarantee)
         {
-            GetList("1");
+            GetList("1",curDate);
             findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.guarantee));
         }
         else
         {
-            GetList("2");
+            GetList("2",curDate);
             findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.fold));
         }
 
@@ -74,22 +81,25 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         SetFont();
         initButtons();
 
+        String curDate = getCurrentDate();
+        findTextViewById(R.id.txt_date).setText(curDate);
+
         Token =  prefs.getString("Token","");
 
         findSwipeRefreshLayoutById(R.id.couponslist_swipe_refresh).setRefreshing(true);
         if(IsCouponGuarantee)
         {
-            GetList("1");
+            GetList("1",curDate);
             findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.guarantee));
         }
         else
         {
-            GetList("2");
+            GetList("2",curDate);
             findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.fold));
         }
     }
 
-    public void GetList(final String couponType)
+    public void GetList(final String couponType,String date)
     {
         showLoadingPopup();
 
@@ -104,7 +114,7 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
                         .addConverterFactory(GsonConverterFactory.create())
                         .client(okHttpClient).build();
         RefrofitClass apiservice = retrofit.create(RefrofitClass.class);
-        Call<LoginResponse> servicecall = apiservice.KuponListe(Constants.API_KEY,Token, "text/json;charset=UTF-8", couponType);
+        Call<LoginResponse> servicecall = apiservice.KuponListe(Constants.API_KEY,Token, "text/json;charset=UTF-8", couponType,date);
         servicecall.enqueue(new Callback<LoginResponse>() {
 
 
@@ -139,6 +149,7 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
                                item.MacAdedi = res.get(i).getMacAdedi();
                                item.ToplamOran = res.get(i).getToplamOran();
                                item.KuponFiyat = res.get(i).getKuponFiyat();
+                               item.KayitTarihi = res.get(i).getKayitTarihi();
                                couponList.add(item);
 
                            }
@@ -197,28 +208,47 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         TextView txt_guarantee = (TextView) findViewById(R.id.txt_guarantee);
         TextView txt_fold = (TextView) findViewById(R.id.txt_fold);
         TextView txt_header = (TextView) findViewById(R.id.txt_header);
+        TextView txt_date = (TextView)findViewById(R.id.txt_date);
 
         txt_matchestoday.setTypeface(type);
         txt_guarantee.setTypeface(type);
         txt_fold.setTypeface(type);
         txt_header.setTypeface(type);
+        txt_date.setTypeface(type);
 
     }
     private void initButtons()
     {
+
+        findTextViewById(R.id.txt_date).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dialog = new DatePickerDialog(CouponListActivity.this, new CouponListActivity.mDateSetListener(), mYear, mMonth, mDay);
+                dialog.show();
+
+            }
+        });
+
         findSwipeRefreshLayoutById(R.id.couponslist_swipe_refresh).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh()
             {
+
+
                 if(IsCouponGuarantee)
                 {
-                    GetList("1");
+                    GetList("1",findTextViewById(R.id.txt_date).getText().toString());
                     findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.guarantee));
 
                 }
                 else
                 {
-                            GetList("2");
+                            GetList("2",findTextViewById(R.id.txt_date).getText().toString());
                     findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.fold));
                 }
 
@@ -238,7 +268,9 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
 
         findTextViewById(R.id.txt_guarantee).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+
 
                 IsCouponGuarantee = true;
 
@@ -246,7 +278,7 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
 
                 findSwipeRefreshLayoutById(R.id.couponslist_swipe_refresh).setRefreshing(true);
 
-                GetList("1");
+                GetList("1",findTextViewById(R.id.txt_date).getText().toString());
 
                 findSwipeRefreshLayoutById(R.id.couponslist_swipe_refresh).setRefreshing(false);
 
@@ -257,18 +289,62 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
             @Override
             public void onClick(View view) {
 
+
                 IsCouponGuarantee = false;
                 findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.fold));
 
                 findSwipeRefreshLayoutById(R.id.couponslist_swipe_refresh).setRefreshing(true);
 
-                GetList("2");
+                GetList("2",findTextViewById(R.id.txt_date).getText().toString());
 
                 findSwipeRefreshLayoutById(R.id.couponslist_swipe_refresh).setRefreshing(false);
 
             }
         });
     }
+
+    private String getCurrentDate()
+    {
+        Calendar c = Calendar.getInstance();
+        int mYear = c.get(Calendar.YEAR);
+        int mMonth = c.get(Calendar.MONTH);
+        int mDay = c.get(Calendar.DAY_OF_MONTH);
+        c.set(mYear, mMonth, mDay );
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedDate = sdf.format(c.getTime());
+
+        return formattedDate;
+    }
+    public class mDateSetListener implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+
+            Calendar c = Calendar.getInstance();
+            c.set(year, monthOfYear, dayOfMonth);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = sdf.format(c.getTime());
+            findTextViewById(R.id.txt_date).setText(formattedDate);
+
+            if(IsCouponGuarantee)
+            {
+                GetList("1",formattedDate);
+                findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.guarantee));
+
+            }
+            else
+            {
+                GetList("2",formattedDate);
+                findTextViewById(R.id.txt_matchestoday).setText(getResources().getString(R.string.fold));
+            }
+
+
+
+        }
+    }
+
 
     public void callCouponDetailActivity(String id,String name)
     {

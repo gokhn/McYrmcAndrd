@@ -100,6 +100,14 @@
             android:textColor="@color/white"
             android:textSize="13.31sp" />
 
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:textColor="@color/white"
+            android:textSize="13.31sp" />
+
 
     </LinearLayout>
 

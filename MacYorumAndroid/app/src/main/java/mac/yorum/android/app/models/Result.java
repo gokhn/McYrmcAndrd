@@ -42,9 +42,37 @@ public class Result {
     public  String Yorum;
     public  String MacTarihi;
 
+    public String YorumOlusturan;
+    public String MacYorumu;
+    public String MacSonucu;
 
 
-  //  public ArrayList<Yetki> Yetkiler;
+    public String getYorumOlusturan() {
+        return YorumOlusturan;
+    }
+
+    public void setYorumOlusturan(String yorumOlusturan) {
+        YorumOlusturan = yorumOlusturan;
+    }
+
+    public String getMacYorumu() {
+        return MacYorumu;
+    }
+
+    public void setMacYorumu(String macYorumu) {
+        MacYorumu = macYorumu;
+    }
+
+    public String getMacSonucu() {
+        return MacSonucu;
+    }
+
+    public void setMacSonucu(String macSonucu) {
+        MacSonucu = macSonucu;
+    }
+
+
+    //  public ArrayList<Yetki> Yetkiler;
 
     public String getId() {
         return Id;
