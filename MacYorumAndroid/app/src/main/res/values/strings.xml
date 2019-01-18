@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MacYorumAndroid</string>
+    <string name="app_name">Maç Yorumcu</string>
     <string name="refcode">Referans Kodu</string>
     <string name="nameandsurname">Ad Soyad</string>
     <string name="emailaddress">Email Adres</string>
@@ -33,6 +33,8 @@
 
     <string name="coupon">Kupon</string>
     <string name="coupons">Kuponlar</string>
+    <string name="woncoupons">Kazanan Kuponlar</string>
+    <string name="woncoupon">Kazanan Kupon</string>
     <string name="guarantee">Banko</string>
     <string name="fold">Misli</string>
     <string name="guaranteecoupon">Banko Kuponlar</string>
@@ -43,11 +45,14 @@
     <string name="earn">Kazanç:</string>
     <string name="register_date">Kayıt Tarihi: </string>
 
+    <string name="code">Kod:</string>
+
     <string name="prediction">Tahmin:</string>
 
     <string name="cancel">Vazgeç</string>
     <string name="logout">Çıkış</string>
     <string name="yes">Evet</string>
     <string name="do_you_want_to_quit">Çıkış yapmak istediğinize emin misiniz ?</string>
+    <string name="pressexitbutton">Çıkmak için birkez daha basın</string>
 
 </resources>

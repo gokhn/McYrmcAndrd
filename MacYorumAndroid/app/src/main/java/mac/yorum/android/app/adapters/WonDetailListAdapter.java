@@ -11,18 +11,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import mac.yorum.android.app.activities.CouponDetailListActivity;
+import mac.yorum.android.app.activities.WonCouponDetailListActivity;
 import mac.yorum.android.app.helpers.Converter;
 import mac.yorum.android.app.models.mainmodels.CouponMatch;
 import yorum.mac.com.macyorumandroid.R;
 
-public class CouponDetailListAdapter extends RecyclerView.Adapter<CouponDetailListAdapter.SimpleViewHolder> {
+public class WonDetailListAdapter extends RecyclerView.Adapter<WonDetailListAdapter.SimpleViewHolder> {
     private Context mContext;
     private ArrayList<CouponMatch> couponMatchLists;
     public Typeface type;
 
 
-    public CouponDetailListAdapter(Context context, ArrayList<CouponMatch> couponMatches) {
+    public WonDetailListAdapter(Context context, ArrayList<CouponMatch> couponMatches) {
 
         this.mContext = context;
         this.couponMatchLists = couponMatches;
@@ -31,14 +31,14 @@ public class CouponDetailListAdapter extends RecyclerView.Adapter<CouponDetailLi
 
 
     @Override
-    public CouponDetailListAdapter.SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public WonDetailListAdapter.SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.coupon_detail_adapter, parent, false);
-        return new CouponDetailListAdapter.SimpleViewHolder(view);
+        return new WonDetailListAdapter.SimpleViewHolder(view);
     }
 
 
     @Override
-    public void onBindViewHolder(final CouponDetailListAdapter.SimpleViewHolder vi, final int position) {
+    public void onBindViewHolder(final WonDetailListAdapter.SimpleViewHolder vi, final int position) {
         final CouponMatch item = couponMatchLists.get(position);
 
         vi.txt_home.setTypeface(type);
@@ -62,7 +62,7 @@ public class CouponDetailListAdapter extends RecyclerView.Adapter<CouponDetailLi
             @Override
             public void onClick(View view) {
 
-                ((CouponDetailListActivity)mContext).callDetailActivity(item.getId(),item.getEvSahibiTakim(),item.getKonukTakim(),item.getMacTarihi(),item.getYorum(),item.getTahmin(),item.getIddaKodu(),item.getMacTipi(),item.getKuponAd());
+                ((WonCouponDetailListActivity)mContext).callDetailActivity(item.getId(),item.getEvSahibiTakim(),item.getKonukTakim(),item.getMacTarihi(),item.getYorum(),item.getTahmin(),item.getIddaKodu(),item.getMacTipi(),item.getKuponAd());
             }
         });
     }

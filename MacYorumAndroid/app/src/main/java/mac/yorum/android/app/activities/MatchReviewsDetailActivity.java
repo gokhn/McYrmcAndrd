@@ -61,14 +61,14 @@ public class MatchReviewsDetailActivity extends BaseAppCompatActivitiy {
         txt_review_detail.setTypeface(type);
 
 
-        txt_league.setText("Oran:"+ oran);
+        txt_league.setText(getResources().getString(R.string.rate)+" " + oran);
 
         txt_home.setText(evsahibi);
         txt_away.setText(konuktakim);
         txt_date.setText(Converter.stringToShortDate(mactarihi));
         txt_review_detail.setText(yorum);
         txt_score_prediction.setText(macsonucu);
-        txt_bedding_code.setText(iddiaKodu);
+        txt_bedding_code.setText(getResources().getString(R.string.code)+" " +iddiaKodu);
     }
 
     private void  initButtons()

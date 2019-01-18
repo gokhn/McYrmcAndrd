@@ -8,7 +8,7 @@ import android.widget.TextView;
 import mac.yorum.android.app.helpers.Converter;
 import yorum.mac.com.macyorumandroid.R;
 
-public class CouponDetailActivity extends BaseAppCompatActivitiy {
+public class WonCouponDetailActivity extends BaseAppCompatActivitiy {
 
     private String id;
 
@@ -93,5 +93,4 @@ public class CouponDetailActivity extends BaseAppCompatActivitiy {
             }
         });
     }
-
 }

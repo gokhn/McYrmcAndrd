@@ -53,12 +53,12 @@ public class MatchReviewsListAdapter extends RecyclerView.Adapter<MatchReviewsLi
 
         vi.txt_home.setText(item.getEvSahibiTakim());
         vi.txt_away.setText(item.getKonukTakim());
-        vi.txt_league.setText("Oran:"+item.getOran());
+        vi.txt_league.setText(mContext.getString(R.string.rate)+" " +item.getOran());
         vi.txt_match_date.setText(Converter.stringToShortDate(item.getMacTarihi()));
 
         vi.txt_summary.setText(item.getMacSonucu());
 
-        vi.txt_bedding_code.setText(item.getIddaKodu());
+        vi.txt_bedding_code.setText(mContext.getString(R.string.code)+" " +item.getIddaKodu());
 
         vi.lnr_selected.setOnClickListener(new View.OnClickListener() {
             @Override

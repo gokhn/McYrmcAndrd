@@ -29,6 +29,13 @@ public interface RefrofitClass {
                              @Header("Content-Type") String contenttype,
                              @Body SignUpRequest loginRequest);
 
+    @GET("/Mobil/KazananKuponListe")
+    Call<LoginResponse> KazananKuponListe(
+            @Header("TokenLar") String token,
+            @Header("KullaniciToken") String kullaniciToken,
+            @Header("Content-Type") String contenttype,
+            @Query("KuponTipi") String kuponTipi,
+            @Query("Tarih") String tarih);
 
     @GET("/Mobil/KuponListe")
     Call<LoginResponse> KuponListe(

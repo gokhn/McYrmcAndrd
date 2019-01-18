@@ -11,19 +11,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import mac.yorum.android.app.activities.CouponListActivity;
+import mac.yorum.android.app.activities.WonCouponListActivity;
 import mac.yorum.android.app.helpers.Converter;
 import mac.yorum.android.app.models.mainmodels.Coupon;
 import yorum.mac.com.macyorumandroid.R;
 
-public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.SimpleViewHolder> {
+public class WonCouponListAdapter extends RecyclerView.Adapter<WonCouponListAdapter.SimpleViewHolder> {
 
     private Context mContext;
     private ArrayList<Coupon> couponList;
     public Typeface type;
 
 
-    public CouponListAdapter(Context context, ArrayList<Coupon> couponList) {
+    public WonCouponListAdapter(Context context, ArrayList<Coupon> couponList) {
 
         this.mContext = context;
         this.couponList = couponList;
@@ -31,13 +31,15 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
     }
 
     @Override
-    public CouponListAdapter.SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public WonCouponListAdapter.SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.couponlist_adapter, parent, false);
-        return new CouponListAdapter.SimpleViewHolder(view);
+        return new WonCouponListAdapter.SimpleViewHolder(view);
     }
 
+
+
     @Override
-    public void onBindViewHolder(final CouponListAdapter.SimpleViewHolder vi, final int position) {
+    public void onBindViewHolder(final WonCouponListAdapter.SimpleViewHolder vi, final int position) {
         final Coupon item = couponList.get(position);
 
 
@@ -73,7 +75,7 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
             @Override
             public void onClick(View view) {
 
-                ((CouponListActivity)mContext).callCouponDetailActivity(item.getId(),item.getKuponAd());
+                ((WonCouponListActivity)mContext).callCouponDetailActivity(item.getId(),item.getKuponAd());
 
             }
         });
@@ -117,6 +119,5 @@ public class CouponListAdapter extends RecyclerView.Adapter<CouponListAdapter.Si
         }
     }
 
-
-
 }
+

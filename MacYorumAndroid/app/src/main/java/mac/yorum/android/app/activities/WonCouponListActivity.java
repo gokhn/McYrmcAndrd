@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
-import mac.yorum.android.app.adapters.CouponListAdapter;
 import mac.yorum.android.app.adapters.EmptyListAdapter;
+import mac.yorum.android.app.adapters.WonCouponListAdapter;
 import mac.yorum.android.app.configs.Constants;
 import mac.yorum.android.app.configs.UrlConfig;
 import mac.yorum.android.app.models.LoginResponse;
@@ -35,11 +35,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import yorum.mac.com.macyorumandroid.R;
 
-public class CouponListActivity extends BaseAppCompatActivitiy {
+public class WonCouponListActivity extends BaseAppCompatActivitiy {
 
     RecyclerView mRecyclerView;
     EmptyListAdapter mAdapyerEmpty;
-    CouponListAdapter mAdapter;
+    WonCouponListAdapter mAdapter;
     private SharedPreferences prefs;
     String Token;
 
@@ -123,7 +123,7 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
                         .addConverterFactory(GsonConverterFactory.create())
                         .client(okHttpClient).build();
         RefrofitClass apiservice = retrofit.create(RefrofitClass.class);
-        Call<LoginResponse> servicecall = apiservice.KuponListe(Constants.API_KEY,Token, "text/json;charset=UTF-8", couponType,date);
+        Call<LoginResponse> servicecall = apiservice.KazananKuponListe(Constants.API_KEY,Token, "text/json;charset=UTF-8", couponType,date);
         servicecall.enqueue(new Callback<LoginResponse>() {
 
 
@@ -138,37 +138,37 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
 
                         if (!responseBody.Status.equals("200"))
                         {
-                            toastMessage(CouponListActivity.this, responseBody.Result.toString());
+                            toastMessage(WonCouponListActivity.this, responseBody.Result.toString());
                         }
                         else
                         {
-                           ArrayList<Result>  res = response.body().Result;
-                           ArrayList<Coupon> couponList = new ArrayList<>();
-                           for(int i=0; i<res.size();i++)
-                           {
-                               Coupon item = new Coupon();
-                               item.Id = res.get(i).getId();
-                               item.Aciklama = res.get(i).getAciklama();
-                               item.GecerlilikSuresi = res.get(i).getGecerlilikSuresi();
-                               item.Aktif =res.get(i).getAktif();
-                               item.KazancFiyat = res.get(i).getKazancFiyat();
-                               item.KuponFiyat = res.get(i).getKuponFiyat();
-                               item.KuponAd = res.get(i).getKuponAd();
-                               item.KuponTipi = res.get(i).getKuponTipi();
-                               item.MacAdedi = res.get(i).getMacAdedi();
-                               item.ToplamOran = res.get(i).getToplamOran();
-                               item.KuponFiyat = res.get(i).getKuponFiyat();
-                               item.KayitTarihi = res.get(i).getKayitTarihi();
-                               couponList.add(item);
+                            ArrayList<Result> res = response.body().Result;
+                            ArrayList<Coupon> couponList = new ArrayList<>();
+                            for(int i=0; i<res.size();i++)
+                            {
+                                Coupon item = new Coupon();
+                                item.Id = res.get(i).getId();
+                                item.Aciklama = res.get(i).getAciklama();
+                                item.GecerlilikSuresi = res.get(i).getGecerlilikSuresi();
+                                item.Aktif =res.get(i).getAktif();
+                                item.KazancFiyat = res.get(i).getKazancFiyat();
+                                item.KuponFiyat = res.get(i).getKuponFiyat();
+                                item.KuponAd = res.get(i).getKuponAd();
+                                item.KuponTipi = res.get(i).getKuponTipi();
+                                item.MacAdedi = res.get(i).getMacAdedi();
+                                item.ToplamOran = res.get(i).getToplamOran();
+                                item.KuponFiyat = res.get(i).getKuponFiyat();
+                                item.KayitTarihi = res.get(i).getKayitTarihi();
+                                couponList.add(item);
 
-                           }
+                            }
 
                             binData(couponList);
                         }
                         hideLoadingPopup();
                     } else {
                         hideLoadingPopup();
-                        toastMessage(CouponListActivity.this, getResources().getString(R.string.error_found));
+                        toastMessage(WonCouponListActivity.this, getResources().getString(R.string.error_found));
                     }
 
                 } catch (Exception ex) {
@@ -181,20 +181,20 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
 
-                toastMessage(CouponListActivity.this, t.getMessage());
+                toastMessage(WonCouponListActivity.this, t.getMessage());
                 hideLoadingPopup();
             }
         });
 
 
-      //  binData(list);
+        //  binData(list);
     }
 
     private void binData(final ArrayList<Coupon> items)
     {
         mRecyclerView = (RecyclerView) findViewById(R.id.couponslist_recycler_view);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(CouponListActivity.this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(WonCouponListActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -204,7 +204,7 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         }
         else
         {
-            mAdapter = new CouponListAdapter(CouponListActivity.this, items);
+            mAdapter = new WonCouponListAdapter(WonCouponListActivity.this, items);
             mRecyclerView.setAdapter(mAdapter);
         }
     }
@@ -225,6 +225,8 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         txt_header.setTypeface(type);
         txt_date.setTypeface(type);
 
+        txt_header.setText(getResources().getString(R.string.woncoupons));
+
     }
     private void initButtons()
     {
@@ -237,7 +239,7 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
                 int mYear = c.get(Calendar.YEAR);
                 int mMonth = c.get(Calendar.MONTH);
                 int mDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(CouponListActivity.this, new CouponListActivity.mDateSetListener(), mYear, mMonth, mDay);
+                DatePickerDialog dialog = new DatePickerDialog(WonCouponListActivity.this, new WonCouponListActivity.mDateSetListener(), mYear, mMonth, mDay);
                 dialog.show();
 
             }
@@ -322,13 +324,13 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         final int sdk = android.os.Build.VERSION.SDK_INT;
         if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
         {
-            findTextViewById(R.id.txt_guarantee).setBackgroundDrawable(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_white) );
-            findTextViewById(R.id.txt_guarantee).setTextColor(ContextCompat.getColor(CouponListActivity.this, R.color.colorGray));
+            findTextViewById(R.id.txt_guarantee).setBackgroundDrawable(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_white) );
+            findTextViewById(R.id.txt_guarantee).setTextColor(ContextCompat.getColor(WonCouponListActivity.this, R.color.colorGray));
         }
         else
-            {
-            findTextViewById(R.id.txt_guarantee).setBackground(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_white));
-                findTextViewById(R.id.txt_guarantee).setTextColor(getResources().getColor(R.color.colorGray));
+        {
+            findTextViewById(R.id.txt_guarantee).setBackground(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_white));
+            findTextViewById(R.id.txt_guarantee).setTextColor(getResources().getColor(R.color.colorGray));
         }
     }
     private void setPassiveGuaranteeColor()
@@ -337,12 +339,12 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         final int sdk = android.os.Build.VERSION.SDK_INT;
         if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
         {
-            findTextViewById(R.id.txt_guarantee).setBackgroundDrawable(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_gray) );
-            findTextViewById(R.id.txt_guarantee).setTextColor(ContextCompat.getColor(CouponListActivity.this, R.color.colorBackroundWhite));
+            findTextViewById(R.id.txt_guarantee).setBackgroundDrawable(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_gray) );
+            findTextViewById(R.id.txt_guarantee).setTextColor(ContextCompat.getColor(WonCouponListActivity.this, R.color.colorBackroundWhite));
         }
         else
         {
-            findTextViewById(R.id.txt_guarantee).setBackground(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_gray));
+            findTextViewById(R.id.txt_guarantee).setBackground(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_gray));
             findTextViewById(R.id.txt_guarantee).setTextColor(getResources().getColor(R.color.colorBackroundWhite));
         }
 
@@ -353,12 +355,12 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         final int sdk = android.os.Build.VERSION.SDK_INT;
         if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
         {
-            findTextViewById(R.id.txt_fold).setBackgroundDrawable(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_white) );
-            findTextViewById(R.id.txt_fold).setTextColor(ContextCompat.getColor(CouponListActivity.this, R.color.colorGray));
+            findTextViewById(R.id.txt_fold).setBackgroundDrawable(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_white) );
+            findTextViewById(R.id.txt_fold).setTextColor(ContextCompat.getColor(WonCouponListActivity.this, R.color.colorGray));
         }
         else
         {
-            findTextViewById(R.id.txt_fold).setBackground(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_white));
+            findTextViewById(R.id.txt_fold).setBackground(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_white));
             findTextViewById(R.id.txt_fold).setTextColor(getResources().getColor(R.color.colorGray));
         }
     }
@@ -368,12 +370,12 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         final int sdk = android.os.Build.VERSION.SDK_INT;
         if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
         {
-            findTextViewById(R.id.txt_fold).setBackgroundDrawable(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_gray) );
-            findTextViewById(R.id.txt_fold).setTextColor(ContextCompat.getColor(CouponListActivity.this, R.color.colorBackroundWhite));
+            findTextViewById(R.id.txt_fold).setBackgroundDrawable(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_gray) );
+            findTextViewById(R.id.txt_fold).setTextColor(ContextCompat.getColor(WonCouponListActivity.this, R.color.colorBackroundWhite));
         }
         else
         {
-            findTextViewById(R.id.txt_fold).setBackground(ContextCompat.getDrawable(CouponListActivity.this, R.drawable.roun_rect_gray));
+            findTextViewById(R.id.txt_fold).setBackground(ContextCompat.getDrawable(WonCouponListActivity.this, R.drawable.roun_rect_gray));
             findTextViewById(R.id.txt_fold).setTextColor(getResources().getColor(R.color.colorBackroundWhite));
         }
 
@@ -425,6 +427,7 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
 
     public void callCouponDetailActivity(String id,String name)
     {
-        newActivity(new CouponDetailListActivity(),id,name);
+        newActivity(new WonCouponDetailListActivity(),id,name);
     }
+
 }

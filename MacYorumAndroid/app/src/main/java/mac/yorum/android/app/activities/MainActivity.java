@@ -5,8 +5,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import mac.yorum.android.app.widgets.YesNoPopup;
 import yorum.mac.com.macyorumandroid.R;
@@ -14,6 +14,28 @@ import yorum.mac.com.macyorumandroid.R;
 public class MainActivity extends BaseAppCompatActivitiy {
 
     private SharedPreferences prefs;
+    private long mLastPress = 0;
+    int TOAST_DURATION = 5000;
+    Toast onBackPressedToast;
+
+    @Override
+    public void onBackPressed() {
+        closeKeyboard();
+
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - mLastPress > TOAST_DURATION) {
+            onBackPressedToast = Toast.makeText(this, R.string.pressexitbutton, Toast.LENGTH_SHORT);
+            onBackPressedToast.show();
+            mLastPress = currentTime;
+        } else {
+            if (onBackPressedToast != null) {
+                onBackPressedToast.cancel();  //Difference with previous answer. Prevent continuing showing toast after application exit.
+                onBackPressedToast = null;
+            }
+            super.onBackPressed();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,8 +48,6 @@ public class MainActivity extends BaseAppCompatActivitiy {
 
         String RefNo = prefs.getString("ReferansKodu","");
         findTextViewById(R.id.txt_refno).setText(RefNo);
-
-
     }
 
     private void  SetFont()
@@ -36,12 +56,14 @@ public class MainActivity extends BaseAppCompatActivitiy {
 
         TextView txt_refno = (TextView) findViewById(R.id.txt_refno);
 
-        Button  btn_match_reviews = (Button)findViewById(R.id.btn_match_reviews);
-        Button btn_coupons =  (Button)findViewById(R.id.btn_coupons);
+        TextView  btn_match_reviews = (TextView)findViewById(R.id.btn_match_reviews);
+        TextView btn_coupons =  (TextView)findViewById(R.id.btn_coupons);
+        TextView btn_won_coupons = (TextView)findViewById(R.id.btn_won_coupons);
 
         txt_refno.setTypeface(type);
         btn_match_reviews.setTypeface(type);
         btn_coupons.setTypeface(type);
+        btn_won_coupons.setTypeface(type);
     }
 
     public void clearUser()
@@ -70,7 +92,7 @@ public class MainActivity extends BaseAppCompatActivitiy {
                 };
             }
         });
-        findViewById(R.id.btn_match_reviews).setOnClickListener(new View.OnClickListener() {
+        findTextViewById(R.id.btn_match_reviews).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -78,11 +100,19 @@ public class MainActivity extends BaseAppCompatActivitiy {
             }
         });
 
-        findViewById(R.id.btn_coupons).setOnClickListener(new View.OnClickListener() {
+        findTextViewById(R.id.btn_coupons).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 newActivity(new CouponListActivity());
+            }
+        });
+
+        findTextViewById(R.id.btn_won_coupons).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                newActivity(new WonCouponListActivity());
             }
         });
     }
