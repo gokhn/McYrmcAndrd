@@ -64,7 +64,7 @@
     <string name="deletemyaccount">Hesabımı Sil</string>
 
     <string name="updatepasswordchangesuccesfully">Parolanız Güncellenmiştir.</string>
-    <string name="pleaserelogin">Oturum Sonlandırılmıştır. Yeniden Giriş YApınız.</string>
+    <string name="pleaserelogin">Oturum Sonlandırılmıştır. Yeniden Giriş Yapınız.</string>
 
     <string name="deletedaccountsuccesfully">Hesabınız Silinmiştir.</string>
 </resources>
