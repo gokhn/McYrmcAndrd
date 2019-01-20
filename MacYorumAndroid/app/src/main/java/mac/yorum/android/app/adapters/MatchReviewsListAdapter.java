@@ -60,6 +60,8 @@ public class MatchReviewsListAdapter extends RecyclerView.Adapter<MatchReviewsLi
 
         vi.txt_bedding_code.setText(mContext.getString(R.string.code)+" " +item.getIddaKodu());
 
+        vi.txt_read_count.setText(mContext.getString(R.string.readcount)+" " +item.getOkunmaSayisi());
+
         vi.lnr_selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +88,7 @@ public class MatchReviewsListAdapter extends RecyclerView.Adapter<MatchReviewsLi
         TextView txt_summary;
         TextView txt_bedding_code;
         LinearLayout lnr_selected;
+        TextView txt_read_count;
 
         public SimpleViewHolder(View vi) {
             super(vi);
@@ -97,6 +100,7 @@ public class MatchReviewsListAdapter extends RecyclerView.Adapter<MatchReviewsLi
             txt_summary = vi.findViewById(R.id.txt_summary);
             txt_bedding_code = vi.findViewById(R.id.txt_bedding_code);
             lnr_selected = vi.findViewById(R.id.lnr_selected);
+            txt_read_count = vi.findViewById(R.id.txt_read_count);
         }
     }
 }

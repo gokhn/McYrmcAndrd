@@ -111,8 +111,11 @@ public class SignUpActivity extends BaseAppCompatActivitiy {
 
                                 edit.putString("Token",res.get(0).getToken());
                                 edit.putString("ReferansKodu",res.get(0).getReferansKodu());
-                                edit.putString("KullaniciAdi","");
-                                edit.putString("Parola","");
+                                edit.putString("KullaniciAdi",res.get(0).getKullaniciAdi());
+                                edit.putString("Parola",res.get(0).getParola());
+                                edit.putString("AdSoyad",res.get(0).getAdSoyad());
+                                edit.putString("Email",res.get(0).getEposta());
+                                edit.putString("Telefon",res.get(0).getTelefon());
 
                                 edit.commit();
                                 finish();

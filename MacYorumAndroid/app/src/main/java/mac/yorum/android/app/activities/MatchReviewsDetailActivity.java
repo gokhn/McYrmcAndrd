@@ -1,11 +1,24 @@
 package mac.yorum.android.app.activities;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
+import mac.yorum.android.app.configs.Constants;
+import mac.yorum.android.app.configs.UrlConfig;
 import mac.yorum.android.app.helpers.Converter;
+import mac.yorum.android.app.models.LoginResponse;
+import mac.yorum.android.app.retrofit.RefrofitClass;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import yorum.mac.com.macyorumandroid.R;
 
 public class MatchReviewsDetailActivity extends BaseAppCompatActivitiy {
@@ -19,12 +32,17 @@ public class MatchReviewsDetailActivity extends BaseAppCompatActivitiy {
     private String macsonucu;
     private String yorum;
     private String oran;
-
+    private SharedPreferences prefs;
+    private String Token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.matchreviewsdetailactivity);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Token =  prefs.getString("Token","");
 
         id  = getIntent().getStringExtra("Id");
         evsahibi = getIntent().getStringExtra("EVSAHIBI");
@@ -37,6 +55,69 @@ public class MatchReviewsDetailActivity extends BaseAppCompatActivitiy {
 
         SetFont();
         initButtons();
+
+        GetList();
+    }
+
+
+    private void GetList()
+    {
+        showLoadingPopup();
+
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit =
+                new Retrofit.Builder()
+                        .baseUrl(UrlConfig.API_RETROFIT)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .client(okHttpClient).build();
+        RefrofitClass apiservice = retrofit.create(RefrofitClass.class);
+        Call<LoginResponse> servicecall = apiservice.MacYorumOkuyan(Constants.API_KEY,Token, "text/json;charset=UTF-8", id);
+        servicecall.enqueue(new Callback<LoginResponse>() {
+
+            @Override
+            public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response)
+            {
+                if(response.isSuccessful() && response.body() != null && !response.body().Status.equals("200"))
+                {
+                    if(response.body().Status.equals("999"))
+                    {
+                        clearUser();
+                        newActivity(new LoginActivity());
+                        finish();
+                        toastMessage(MatchReviewsDetailActivity.this, getResources().getString(R.string.pleaserelogin));
+                    }
+                    else
+                    {
+                        toastMessage(MatchReviewsDetailActivity.this, response.body().Message.toString());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+            }
+        });
+        hideLoadingPopup();
+    }
+
+    public void clearUser()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Token","");
+        edit.putString("ReferansKodu", "");
+        edit.putString("KullaniciAdi","");
+        edit.putString("Parola","");
+        edit.putString("AdSoyad","");
+        edit.putString("Email","");
+        edit.putString("Telefon","");
+        edit.commit();
     }
 
     private void SetFont()

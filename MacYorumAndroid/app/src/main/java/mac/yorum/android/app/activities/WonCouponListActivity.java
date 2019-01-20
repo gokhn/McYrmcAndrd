@@ -138,7 +138,17 @@ public class WonCouponListActivity extends BaseAppCompatActivitiy {
 
                         if (!responseBody.Status.equals("200"))
                         {
-                            toastMessage(WonCouponListActivity.this, responseBody.Result.toString());
+                            if(response.body().Status.equals("999"))
+                            {
+                                clearUser();
+                                newActivity(new LoginActivity());
+                                finish();
+                                toastMessage(WonCouponListActivity.this, getResources().getString(R.string.pleaserelogin));
+                            }
+                            else
+                            {
+                                toastMessage(WonCouponListActivity.this, response.body().Message.toString());
+                            }
                         }
                         else
                         {
@@ -188,6 +198,20 @@ public class WonCouponListActivity extends BaseAppCompatActivitiy {
 
 
         //  binData(list);
+    }
+
+    public void clearUser()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Token","");
+        edit.putString("ReferansKodu", "");
+        edit.putString("KullaniciAdi","");
+        edit.putString("Parola","");
+        edit.putString("AdSoyad","");
+        edit.putString("Email","");
+        edit.putString("Telefon","");
+        edit.commit();
     }
 
     private void binData(final ArrayList<Coupon> items)

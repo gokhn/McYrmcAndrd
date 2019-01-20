@@ -29,4 +29,6 @@
     <color name="popup_btn_text_black">#6f7881</color>
     <color name="popup_deliver_btn_bg">#45dd5c</color>
 
+    <color name="usernamaanddpassword_bg">#929292</color>
+
 </resources>

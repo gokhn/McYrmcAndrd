@@ -64,6 +64,11 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
             android:name="mac.yorum.android.app.activities.WonCouponDetailActivity"/>
 
+        <activity android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
+            android:name="mac.yorum.android.app.activities.SettingsActivity"/>
+
 
         <activity android:launchMode="singleTask"
             android:screenOrientation="portrait"

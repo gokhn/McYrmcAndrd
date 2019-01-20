@@ -74,6 +74,20 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
         super.onResume();
     }
 
+    public void clearUser()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Token","");
+        edit.putString("ReferansKodu", "");
+        edit.putString("KullaniciAdi","");
+        edit.putString("Parola","");
+        edit.putString("AdSoyad","");
+        edit.putString("Email","");
+        edit.putString("Telefon","");
+        edit.commit();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -138,7 +152,18 @@ public class CouponListActivity extends BaseAppCompatActivitiy {
 
                         if (!responseBody.Status.equals("200"))
                         {
-                            toastMessage(CouponListActivity.this, responseBody.Result.toString());
+                            if(responseBody.Status.equals("999"))
+                            {
+                                clearUser();
+                                newActivity(new LoginActivity());
+                                finish();
+                                toastMessage(CouponListActivity.this, getResources().getString(R.string.pleaserelogin));
+                            }
+                            else
+                            {
+                                toastMessage(CouponListActivity.this, responseBody.Message.toString());
+                            }
+
                         }
                         else
                         {

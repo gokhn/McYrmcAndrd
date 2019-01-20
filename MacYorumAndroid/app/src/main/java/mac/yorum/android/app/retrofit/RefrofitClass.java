@@ -61,6 +61,30 @@ public interface RefrofitClass {
             @Header("Content-Type") String contenttype,
             @Query("Tarih") String tarih);
 
+    //
+    //http://185.122.201.49:8080/Mobil/MacYorumOkuyan?id=1
+
+    @GET("/Mobil/MacYorumOkuyan")
+    Call<LoginResponse> MacYorumOkuyan(
+            @Header("TokenLar") String token,
+            @Header("KullaniciToken") String kullaniciToken,
+            @Header("Content-Type") String contenttype,
+            @Query("id") String id);
+
+    @GET("/Mobil/HesapSilme")
+    Call<LoginResponse> HesapSilme(
+            @Header("TokenLar") String token,
+            @Header("KullaniciToken") String kullaniciToken,
+            @Header("Content-Type") String contenttype);
+
+
+
+    @GET("/Mobil/ParolaGuncelle")
+    Call<LoginResponse> ParolaGuncelle(
+            @Header("TokenLar") String token,
+            @Header("KullaniciToken") String kullaniciToken,
+            @Header("Content-Type") String contenttype,
+            @Query("Parola") String parola);
 
 
 }

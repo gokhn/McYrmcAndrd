@@ -46,6 +46,7 @@
     <string name="register_date">Kayıt Tarihi: </string>
 
     <string name="code">Kod:</string>
+    <string name="readcount">Okunma Sayısı:</string>
 
     <string name="prediction">Tahmin:</string>
 
@@ -54,5 +55,16 @@
     <string name="yes">Evet</string>
     <string name="do_you_want_to_quit">Çıkış yapmak istediğinize emin misiniz ?</string>
     <string name="pressexitbutton">Çıkmak için birkez daha basın</string>
+    <string name="update">Güncelle</string>
+    <string name="newpassword">Yeni Parola Giriniz.</string>
+    <string name="newpasswordagain">Yeni Parola Giriniz.(tekrar)</string>
+    <string name="cannotmathingpassword">Girilen Parolalar Eşleşmemektedir.</string>
 
+    <string name="updatepassword">Parola Güncelle</string>
+    <string name="deletemyaccount">Hesabımı Sil</string>
+
+    <string name="updatepasswordchangesuccesfully">Parolanız Güncellenmiştir.</string>
+    <string name="pleaserelogin">Oturum Sonlandırılmıştır. Yeniden Giriş YApınız.</string>
+
+    <string name="deletedaccountsuccesfully">Hesabınız Silinmiştir.</string>
 </resources>

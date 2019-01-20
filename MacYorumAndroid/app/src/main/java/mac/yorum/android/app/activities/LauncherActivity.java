@@ -30,6 +30,7 @@ public class LauncherActivity extends BaseAppCompatActivitiy {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launcher_activity);
 
+
         SetFont();
         initButtons();
 
@@ -49,6 +50,7 @@ public class LauncherActivity extends BaseAppCompatActivitiy {
                 hideLoadingPopup();
             }
         }, SPLASH_DURATION);
+
 
     }
 

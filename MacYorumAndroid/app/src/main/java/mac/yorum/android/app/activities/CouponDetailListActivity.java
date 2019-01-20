@@ -159,7 +159,17 @@ public class CouponDetailListActivity extends BaseAppCompatActivitiy {
 
                         if (!responseBody.Status.equals("200"))
                         {
-                            toastMessage(CouponDetailListActivity.this, responseBody.Result.toString());
+                            if(responseBody.Status.equals("999"))
+                            {
+                                clearUser();
+                                newActivity(new LoginActivity());
+                                finish();
+                                toastMessage(CouponDetailListActivity.this, getResources().getString(R.string.pleaserelogin));
+                            }
+                            else
+                            {
+                                toastMessage(CouponDetailListActivity.this, responseBody.Message.toString());
+                            }
                         }
                         else
                         {
@@ -213,6 +223,20 @@ public class CouponDetailListActivity extends BaseAppCompatActivitiy {
     public void callDetailActivity(String Id, String evssahibi,String konuktakım,String macsaati,String yorum ,String tahmin,String iddakodu,String mactipi,String kuponad)
     {
         newActivity(new CouponDetailActivity(),Id,evssahibi,konuktakım,macsaati,yorum,tahmin,iddakodu,mactipi,kuponad);
+    }
+
+    public void clearUser()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Token","");
+        edit.putString("ReferansKodu", "");
+        edit.putString("KullaniciAdi","");
+        edit.putString("Parola","");
+        edit.putString("AdSoyad","");
+        edit.putString("Email","");
+        edit.putString("Telefon","");
+        edit.commit();
     }
 
 }

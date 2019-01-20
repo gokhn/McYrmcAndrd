@@ -12,6 +12,23 @@
         android:background="@color/colorPrimaryDark">
 
         <RelativeLayout
+            android:id="@+id/btn_user_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp">
+            <ImageView
+                android:contentDescription="@string/login"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/user_settings"/>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/btn_quit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

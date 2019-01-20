@@ -14,6 +14,7 @@ public class Result {
     public String Aktif ;
     public String RecordTime;
     public String KullaniciAdi;
+    public String Telefon;
 
     public String refKullanici;
     public String refKuponTipi;
@@ -46,6 +47,14 @@ public class Result {
     public String MacYorumu;
     public String MacSonucu;
 
+
+    public String getTelefon() {
+        return Telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        Telefon = telefon;
+    }
 
     public String getYorumOlusturan() {
         return YorumOlusturan;

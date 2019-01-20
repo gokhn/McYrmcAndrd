@@ -74,11 +74,21 @@ public class MainActivity extends BaseAppCompatActivitiy {
         edit.putString("ReferansKodu", "");
         edit.putString("KullaniciAdi","");
         edit.putString("Parola","");
+        edit.putString("AdSoyad","");
+        edit.putString("Email","");
+        edit.putString("Telefon","");
         edit.commit();
     }
 
     private void initButtons()
     {
+        findViewById(R.id.btn_user_settings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                newActivity(new SettingsActivity());
+            }
+        });
         findViewById(R.id.btn_quit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

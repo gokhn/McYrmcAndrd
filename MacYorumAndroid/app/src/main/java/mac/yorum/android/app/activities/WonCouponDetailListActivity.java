@@ -161,7 +161,17 @@ public class WonCouponDetailListActivity extends BaseAppCompatActivitiy {
 
                         if (!responseBody.Status.equals("200"))
                         {
-                            toastMessage(WonCouponDetailListActivity.this, responseBody.Result.toString());
+                            if(response.body().Status.equals("999"))
+                            {
+                                clearUser();
+                                newActivity(new LoginActivity());
+                                finish();
+                                toastMessage(WonCouponDetailListActivity.this, getResources().getString(R.string.pleaserelogin));
+                            }
+                            else
+                            {
+                                toastMessage(WonCouponDetailListActivity.this, response.body().Message.toString());
+                            }
                         }
                         else
                         {
@@ -210,6 +220,20 @@ public class WonCouponDetailListActivity extends BaseAppCompatActivitiy {
                 hideLoadingPopup();
             }
         });
+    }
+
+    public void clearUser()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Token","");
+        edit.putString("ReferansKodu", "");
+        edit.putString("KullaniciAdi","");
+        edit.putString("Parola","");
+        edit.putString("AdSoyad","");
+        edit.putString("Email","");
+        edit.putString("Telefon","");
+        edit.commit();
     }
 
     public void callDetailActivity(String Id, String evssahibi,String konuktakım,String macsaati,String yorum ,String tahmin,String iddakodu,String mactipi,String kuponad)

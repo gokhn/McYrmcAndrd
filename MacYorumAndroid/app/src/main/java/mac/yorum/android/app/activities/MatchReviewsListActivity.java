@@ -44,6 +44,26 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
     String Token;
 
     @Override
+    protected void onResume()
+    {
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Token =  prefs.getString("Token","");
+
+        if(findTextViewById(R.id.txt_date).getText().length() >0)
+        {
+            GetList(findTextViewById(R.id.txt_date).getText().toString());
+        }
+        else
+        {
+            String curDate = getCurrentDate();
+            findTextViewById(R.id.txt_date).setText(curDate);
+            GetList(curDate);
+        }
+        super.onResume();
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -162,7 +182,17 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
 
                         if (!responseBody.Status.equals("200"))
                         {
-                            toastMessage(MatchReviewsListActivity.this, responseBody.Message.toString());
+                            if(response.body().Status.equals("999"))
+                            {
+                                clearUser();
+                                newActivity(new LoginActivity());
+                                finish();
+                                toastMessage(MatchReviewsListActivity.this, getResources().getString(R.string.pleaserelogin));
+                            }
+                            else
+                            {
+                                toastMessage(MatchReviewsListActivity.this, response.body().Message.toString());
+                            }
                         }
                         else
                         {
@@ -225,6 +255,19 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
 
 
        //binData(matchReviewsListArrayList);
+    }
+    public void clearUser()
+    {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString("Token","");
+        edit.putString("ReferansKodu", "");
+        edit.putString("KullaniciAdi","");
+        edit.putString("Parola","");
+        edit.putString("AdSoyad","");
+        edit.putString("Email","");
+        edit.putString("Telefon","");
+        edit.commit();
     }
     private String getCurrentDate()
     {
