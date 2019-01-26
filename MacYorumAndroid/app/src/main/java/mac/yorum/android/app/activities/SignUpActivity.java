@@ -99,7 +99,7 @@ public class SignUpActivity extends BaseAppCompatActivitiy {
                         else
                         {
 
-                            if(ValidationHelper.isStringHasValue(responseBody.Message))
+                            if(ValidationHelper.isStringOrEmpty(responseBody.Message))
                             {
                                 toastMessage(SignUpActivity.this,responseBody.Message);
                             }
