@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "80965730971",
+    "firebase_url": "https://macyorumcu-7b3ac.firebaseio.com",
+    "project_id": "macyorumcu-7b3ac",
+    "storage_bucket": "macyorumcu-7b3ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80965730971:android:db2b772cf17b6284",
+        "android_client_info": {
+          "package_name": "yorum.mac.com.macyorumandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "80965730971-8rcuh4jceuagotadul4v87dcdpscd0a9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEs69wI_-HnUwzHguAnS1Ueiew-RZ9mJk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
