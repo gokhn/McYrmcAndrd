@@ -5,9 +5,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -42,28 +45,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (remoteMessage.getData().size() > 0)
         {
-            sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+            }
         }
         if (remoteMessage.getNotification() != null)
         {
-            sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+            }
         }
 
         }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void sendNotification(String messageTitle, String messageBody)
     {
 
 
         Intent notificationIntent = new Intent(this, LauncherActivity.class);
         // set intent so it does not start a new activity
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+       // notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this,0,notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
 
-        notificationBuilder.setSmallIcon(R.drawable.logo);
+        notificationBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.read_ball_logo));
+        notificationBuilder.setStyle(new NotificationCompat.BigTextStyle()
+                           .bigText(messageBody));
+        notificationBuilder.setSmallIcon(R.drawable.read_ball_logo);
         notificationBuilder.setContentTitle(messageTitle);
         notificationBuilder.setContentText(messageBody);
         notificationBuilder.setAutoCancel(true);

@@ -8,6 +8,16 @@ public class SignUpRequest {
     String ReferansKodu;
     String KullaniciAdi;
     String Telefon;
+    String PlatformToken;
+    public String getPlatformToken() {
+        return PlatformToken;
+    }
+
+    public void setPlatformToken(String platformToken) {
+        PlatformToken = platformToken;
+    }
+
+
 
 
     public String getAdSoyad() {

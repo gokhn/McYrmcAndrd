@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -30,6 +33,7 @@ import yorum.mac.com.macyorumandroid.R;
 public class SignUpActivity extends BaseAppCompatActivitiy {
 
     private SharedPreferences prefs;
+    private  String DeviceNotificationToken;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -39,6 +43,10 @@ public class SignUpActivity extends BaseAppCompatActivitiy {
 
         SetFont();
         initButtons();
+
+
+        FirebaseApp.initializeApp(this);
+        DeviceNotificationToken = FirebaseInstanceId.getInstance().getToken();
     }
 
     private void signUp()
@@ -67,6 +75,7 @@ public class SignUpActivity extends BaseAppCompatActivitiy {
         signUpRequest.setKullaniciAdi(userName);
         signUpRequest.setParola(password);
         signUpRequest.setTelefon(PhoneNumber);
+        signUpRequest.setPlatformToken(DeviceNotificationToken);
 
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(120, TimeUnit.SECONDS)
