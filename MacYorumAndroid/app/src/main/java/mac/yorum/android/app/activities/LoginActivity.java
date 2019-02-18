@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +34,7 @@ import yorum.mac.com.macyorumandroid.R;
 public class LoginActivity extends BaseAppCompatActivitiy {
 
     private SharedPreferences prefs;
+    private String  DeviceNotificationToken;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -41,6 +45,8 @@ public class LoginActivity extends BaseAppCompatActivitiy {
         SetFont();
         initButtons();
 
+        FirebaseApp.initializeApp(this);
+       DeviceNotificationToken = FirebaseInstanceId.getInstance().getToken();
     }
 
     @Override
@@ -114,7 +120,7 @@ public class LoginActivity extends BaseAppCompatActivitiy {
         loginRequest.KullaniciAdi = userName;
         loginRequest.Parola = password;
         loginRequest._Platform = "MOBIL";
-        loginRequest.PlatformToken = "456";
+        loginRequest.PlatformToken = DeviceNotificationToken;
 
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(120, TimeUnit.SECONDS)
