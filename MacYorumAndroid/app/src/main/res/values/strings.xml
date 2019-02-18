@@ -42,6 +42,7 @@
     <string name="match">Maç:</string>
     <string name="rate">Oran:</string>
     <string name="amount">Tutar:</string>
+    <string name="connectionerror">Cihazınızda İnternet Bağlantısı Bulunamadı</string>
     <string name="earn">Kazanç:</string>
     <string name="register_date">Kayıt Tarihi: </string>
 
