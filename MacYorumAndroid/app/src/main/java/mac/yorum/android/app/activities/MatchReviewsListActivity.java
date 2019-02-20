@@ -49,6 +49,9 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         Token =  prefs.getString("Token","");
 
+        TextView txt_search = (TextView)findViewById(R.id.txt_search);
+        txt_search.setText("");
+
         if(findTextViewById(R.id.txt_date).getText().length() >0)
         {
             GetList(findTextViewById(R.id.txt_date).getText().toString());
@@ -90,10 +93,12 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
         TextView txt_matchestoday = (TextView) findViewById(R.id.txt_matchestoday);
         TextView txt_date = (TextView) findViewById(R.id.txt_date);
         TextView txt_matchreviews = (TextView) findViewById(R.id.txt_matchreviews);
+        TextView txt_search = (TextView)findViewById(R.id.txt_search);
 
         txt_matchestoday.setTypeface(type);
         txt_date.setTypeface(type);
         txt_matchreviews.setTypeface(type);
+        txt_search.setTypeface(type);
 
     }
 
@@ -130,7 +135,127 @@ public class MatchReviewsListActivity extends  BaseAppCompatActivitiy
 
             }
         });
+
+        findViewById(R.id.btn_searchteamname).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                TextView txt_search = (TextView)findViewById(R.id.txt_search);
+
+                if(txt_search != null && txt_search.length() >0 && txt_search.getText().toString().length() >0
+                        &&!txt_search.getText().toString().equals(null) && !txt_search.getText().toString().equals(""))
+                {
+                    GetListTeamName(txt_search.getText().toString());
+                }
+            }
+        });
     }
+
+    private void GetListTeamName(final String teamName)
+    {
+        showLoadingPopup();
+
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
+                .build();
+
+        Retrofit retrofit =
+                new Retrofit.Builder()
+                        .baseUrl(UrlConfig.API_RETROFIT)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .client(okHttpClient).build();
+        RefrofitClass apiservice = retrofit.create(RefrofitClass.class);
+        Call<LoginResponse> servicecall = apiservice.MacYorumAraListe(Constants.API_KEY,Token, "text/json;charset=UTF-8", teamName);
+        servicecall.enqueue(new Callback<LoginResponse>() {
+
+            @Override
+            public void onResponse(Call<LoginResponse> call, retrofit2.Response<LoginResponse> response)
+            {
+                try
+                {
+                    if (response.isSuccessful() && response.body() != null)
+                    {
+                        final  ArrayList<MatchReviewsList> lists = new ArrayList<MatchReviewsList>();
+                        LoginResponse responseBody = response.body();
+                        closeKeyboard();
+
+                        if (!responseBody.Status.equals("200"))
+                        {
+                            if(response.body().Status.equals("999"))
+                            {
+                                clearUser();
+                                newActivity(new LoginActivity());
+                                finish();
+                                toastMessage(MatchReviewsListActivity.this, getResources().getString(R.string.pleaserelogin));
+                            }
+                            else
+                            {
+                                toastMessage(MatchReviewsListActivity.this, response.body().Message.toString());
+                            }
+                        }
+                        else
+                        {
+                            if(response.body().Result == null)
+                            {
+                                toastMessage(MatchReviewsListActivity.this, responseBody.Message.toString());
+                            }
+                            else
+                            {
+                                ArrayList<Result>  res = response.body().Result;
+
+                                for(int i=0; i<res.size();i++)
+                                {
+                                    MatchReviewsList item = new MatchReviewsList();
+                                    item.setId(res.get(i).getId());
+                                    item.setRefKullanici(res.get(i).getRefKullanici());
+                                    item.setIddaKodu(res.get(i).getIddaKodu());
+                                    item.setYorumOlusturan(res.get(i).getYorumOlusturan());
+                                    item.setKonukTakim(res.get(i).getKonukTakim());
+                                    item.setEvSahibiTakim(res.get(i).getEvSahibiTakim());
+                                    item.setOran(res.get(i).getOran());
+
+                                    item.setMacTarihi(res.get(i).getMacTarihi());
+                                    item.setMacYorumu(res.get(i).getMacYorumu());
+                                    item.setMacSonucu(res.get(i).getMacSonucu());
+                                    item.setOkunmaSayisi(res.get(i).getOkunmaSayisi());
+                                    item.setKayitTarihi(res.get(i).getKayitTarihi());
+
+                                    lists.add(item);
+                                }
+                            }
+
+
+                        }
+                        hideLoadingPopup();
+
+                        binData(lists);
+                    }
+                    else
+                    {
+                        hideLoadingPopup();
+                        toastMessage(MatchReviewsListActivity.this, getResources().getString(R.string.error_found));
+                    }
+
+                } catch (Exception ex) {
+                    Log.e("exlogin", ex.toString());
+                    hideLoadingPopup();
+                }
+                hideLoadingPopup();
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                toastMessage(MatchReviewsListActivity.this, t.getMessage());
+                hideLoadingPopup();
+            }
+        });
+    }
+
+
+
 
     private void binData(final ArrayList<MatchReviewsList> items)
     {

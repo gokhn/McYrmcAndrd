@@ -9,6 +9,17 @@ public class SignUpRequest {
     String KullaniciAdi;
     String Telefon;
     String PlatformToken;
+    String DeviceId;
+
+    public String getDeviceId() {
+        return DeviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        DeviceId = deviceId;
+    }
+
+
     public String getPlatformToken() {
         return PlatformToken;
     }
