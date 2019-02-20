@@ -191,7 +191,7 @@ public class LoginActivity extends BaseAppCompatActivitiy {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
 
-                toastMessage(LoginActivity.this, t.getMessage());
+                toastMessage(LoginActivity.this, t.getMessage().contains("/185.122.201.49:8080")?getResources().getString(R.string.connectionerror):t.getMessage());
                 hideLoadingPopup();
             }
         });
