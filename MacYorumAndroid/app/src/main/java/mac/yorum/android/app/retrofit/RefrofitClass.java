@@ -58,17 +58,8 @@ public interface RefrofitClass {
             @Header("TokenLar") String token,
             @Header("KullaniciToken") String kullaniciToken,
             @Header("Content-Type") String contenttype,
-            @Query("Tarih") String tarih);
-
-
-    @GET("/Mobil/MacYorumAraListe")
-    Call<LoginResponse> MacYorumAraListe(
-            @Header("TokenLar") String token,
-            @Header("KullaniciToken") String kullaniciToken,
-            @Header("Content-Type") String contenttype,
+            @Query("Tarih") String tarih,
             @Query("AranacakKelime") String search);
-
-
 
     @GET("/Mobil/MacYorumOkuyan")
     Call<LoginResponse> MacYorumOkuyan(
