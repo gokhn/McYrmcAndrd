@@ -15,7 +15,6 @@
     <string name="matchestoday">Günün Maçları</string>
     <string name="no_result">Kayıt Bulunamadı...</string>
     <string name="quit">Çıkış</string>
-    <string name="forgot_password">Şifremi Unuttum</string>
 
     <string name="matchreviewtitle">Maçın Yorumu</string>
 
@@ -49,8 +48,6 @@
     <string name="code">Kod:</string>
     <string name="readcount">Okunma Sayısı:</string>
 
-    <string name="searchteamname">Takım Adı ile Arama</string>
-
     <string name="prediction">Tahmin:</string>
 
     <string name="cancel">Vazgeç</string>
@@ -65,11 +62,9 @@
 
     <string name="updatepassword">Parola Güncelle</string>
     <string name="deletemyaccount">Hesabımı Sil</string>
-    <string name="sent">Gönder</string>
 
     <string name="updatepasswordchangesuccesfully">Parolanız Güncellenmiştir.</string>
     <string name="pleaserelogin">Oturum Sonlandırılmıştır. Yeniden Giriş Yapınız.</string>
-    <string name="sentpasswordsuccesfully">Yeni Parolanız Email Adresinize Gönderilmiştir.</string>
 
     <string name="deletedaccountsuccesfully">Hesabınız Silinmiştir.</string>
 </resources>

@@ -53,6 +53,7 @@ public interface RefrofitClass {
             @Query("id") String kuponTipi);
 
 
+    //http://185.122.201.49:8080/Mobil/MacYorumListe?Tarih=2019-01-24
     @GET("/Mobil/MacYorumListe")
     Call<LoginResponse> MacYorumListe(
             @Header("TokenLar") String token,
@@ -60,15 +61,8 @@ public interface RefrofitClass {
             @Header("Content-Type") String contenttype,
             @Query("Tarih") String tarih);
 
-
-    @GET("/Mobil/MacYorumAraListe")
-    Call<LoginResponse> MacYorumAraListe(
-            @Header("TokenLar") String token,
-            @Header("KullaniciToken") String kullaniciToken,
-            @Header("Content-Type") String contenttype,
-            @Query("AranacakKelime") String search);
-
-
+    //
+    //http://185.122.201.49:8080/Mobil/MacYorumOkuyan?id=1
 
     @GET("/Mobil/MacYorumOkuyan")
     Call<LoginResponse> MacYorumOkuyan(
@@ -91,12 +85,6 @@ public interface RefrofitClass {
             @Header("KullaniciToken") String kullaniciToken,
             @Header("Content-Type") String contenttype,
             @Query("Parola") String parola);
-
-    @GET("/Mobil/ParolaSifirla")
-    Call<LoginResponse> ParolaSifirla(
-            @Header("TokenLar") String token,
-            @Header("Content-Type") String contenttype,
-            @Query("Eposta") String eposta);
 
 
 }

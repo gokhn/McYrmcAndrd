@@ -97,7 +97,6 @@ public class MainActivity extends BaseAppCompatActivitiy {
                     @Override
                     protected void OnApplyConfirmation() {
                        clearUser();
-                       newActivity(new LauncherActivity());
                        finish();
                     }
                 };

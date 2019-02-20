@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,7 +35,6 @@ public class LoginActivity extends BaseAppCompatActivitiy {
 
     private SharedPreferences prefs;
     private String  DeviceNotificationToken;
-    private String DeviceId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,8 +47,6 @@ public class LoginActivity extends BaseAppCompatActivitiy {
 
         FirebaseApp.initializeApp(this);
        DeviceNotificationToken = FirebaseInstanceId.getInstance().getToken();
-        DeviceId = Settings.Secure.getString(LoginActivity.this.getContentResolver(),Settings.Secure.ANDROID_ID);
-
     }
 
     @Override
@@ -125,7 +121,6 @@ public class LoginActivity extends BaseAppCompatActivitiy {
         loginRequest.Parola = password;
         loginRequest._Platform = "MOBIL";
         loginRequest.PlatformToken = DeviceNotificationToken;
-        loginRequest.DeviceId = DeviceId;
 
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(120, TimeUnit.SECONDS)

@@ -6,6 +6,5 @@ public class LoginRequest {
     public String Parola;
     public String  _Platform;
     public String PlatformToken;  // Push Notification TOken
-    public  String DeviceId;
 
 }

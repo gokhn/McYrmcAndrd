@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -35,7 +34,6 @@ public class SignUpActivity extends BaseAppCompatActivitiy {
 
     private SharedPreferences prefs;
     private  String DeviceNotificationToken;
-    private String DeviceId;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,7 +47,6 @@ public class SignUpActivity extends BaseAppCompatActivitiy {
 
         FirebaseApp.initializeApp(this);
         DeviceNotificationToken = FirebaseInstanceId.getInstance().getToken();
-        DeviceId = Settings.Secure.getString(SignUpActivity.this.getContentResolver(),Settings.Secure.ANDROID_ID);
     }
 
     private void signUp()
@@ -79,7 +76,6 @@ public class SignUpActivity extends BaseAppCompatActivitiy {
         signUpRequest.setParola(password);
         signUpRequest.setTelefon(PhoneNumber);
         signUpRequest.setPlatformToken(DeviceNotificationToken);
-        signUpRequest.setDeviceId(DeviceId);
 
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(120, TimeUnit.SECONDS)

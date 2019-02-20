@@ -22,7 +22,6 @@
 
     <color name="backgroundcolor">#1f262d</color>
     <color name="signupbuttoncolor">#08df0a</color>
-    <color name="search_border">#a7b4c5</color>
 
     <color name="popup_content_text">#949fab</color>
     <color name="popup_header_text">#00abe0</color>
